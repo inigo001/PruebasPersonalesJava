@@ -65,46 +65,53 @@ public class Sort {
 	// ARREGLAME
 	public static int[] merge(int[] array) {
 
-		int middleIndex = (int) (array.length / 2);
-
-		int firstArrayLength = middleIndex;
-		int secondArrayLength = array.length - middleIndex;
-
-		int[] firstArray = new int[firstArrayLength];
-		int[] secondArray = new int[secondArrayLength];
-
-		if (middleIndex > 0) {
-
-			for (int i = 0; i < firstArrayLength; i++) {
-				firstArray[i] = array[i];
-			}
-
-			for (int i = 0; i < secondArrayLength; i++) {
-				secondArray[i] = array[middleIndex + i];
-			}
-
-			firstArray = merge(firstArray);
-			secondArray = merge(secondArray);
+		if (array.length <= 1) {
+			return array;
 		}
+
+		int halfArray = (int) (array.length / 2);
+
+		int[] leftArray = new int[halfArray];
+		int[] rightArray = new int[array.length - halfArray];
+
+		for (int i = 0; i < leftArray.length; i++) {
+			leftArray[i] = array[i];
+		}
+
+		for (int i = 0; i < rightArray.length; i++) {
+			rightArray[i] = array[halfArray + i];
+		}
+
+		int[] leftNew = Sort.merge(leftArray);
+		int[] rightNew = Sort.merge(rightArray);
 
 		int[] newArray = new int[array.length];
 
 		int i = 0;
 		int j = 0;
 
-		while (i < (firstArrayLength - 1) && j < (secondArrayLength - 1)) {
+		while (i < leftNew.length && j < rightNew.length) {
 
-			if (firstArray[i] < secondArray[j]) {
-				newArray[i + j] = firstArray[i];
-				i++;
-			} else {
-				newArray[i + j] = firstArray[j];
+			if (leftNew[i] > rightNew[j]) {
+				newArray[i + j] = rightNew[j];
 				j++;
+			} else {
+				newArray[i + j] = leftNew[i];
+				i++;
 			}
+		}
 
+		while (i < leftNew.length) {
+			newArray[i + j] = leftNew[i];
+			i++;
+		}
+		while (j < rightNew.length) {
+			newArray[i + j] = rightNew[j];
+			j++;
 		}
 
 		return newArray;
+
 	}
 
 	private static void innerQuickSort(int[] numArray, int indiceInferior, int indiceSuperior) {

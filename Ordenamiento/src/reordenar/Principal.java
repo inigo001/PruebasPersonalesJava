@@ -9,7 +9,7 @@ public class Principal {
 		
 		showArrayContent(numArray);
 
-		int[] sortedArray = Sort.selection(numArray);
+		int[] sortedArray = Sort.merge(numArray);
 		
 		showArrayContent(sortedArray);
 		
