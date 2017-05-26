@@ -5,11 +5,11 @@ public class Principal {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		int[] numArray = createArray(16, 1000);
+		int[] numArray = createArray(56, 1000);
 		
 		showArrayContent(numArray);
 
-		int[] sortedArray = Sort.quickSort(numArray);
+		int[] sortedArray = Sort.insertion(numArray);
 		
 		showArrayContent(sortedArray);
 		

@@ -31,6 +31,22 @@ public class Sort {
 		return numArray;
 	}
 
+	public static int[] insertion(int[] array) {
+
+		for (int i = 0; i < array.length; i++) {
+
+			int j = i;
+
+			while ((j > 0) && (array[j - 1] > array[j])) {
+				Sort.substitute(array, j, j - 1);
+				j = j - 1;
+			}
+		}
+		
+		return array;
+
+	}
+
 	private static void innerQuickSort(int[] numArray, int indiceInferior, int indiceSuperior) {
 		int i = indiceInferior;
 		int j = indiceSuperior;
