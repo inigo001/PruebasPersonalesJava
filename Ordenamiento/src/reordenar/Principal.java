@@ -4,12 +4,12 @@ public class Principal {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		
 		int[] numArray = createArray(56, 1000);
 		
 		showArrayContent(numArray);
 
-		int[] sortedArray = Sort.insertion(numArray);
+		int[] sortedArray = Sort.selection(numArray);
 		
 		showArrayContent(sortedArray);
 		

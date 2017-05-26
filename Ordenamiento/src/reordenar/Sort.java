@@ -14,8 +14,8 @@ public class Sort {
 				}
 			}
 
-			numArray = Sort.substitute(numArray, mayorIndex, j);
-			// Sort.substitute(numArray, mayorIndex, j);
+			numArray = Sort.swap(numArray, mayorIndex, j);
+			// Sort.swap(numArray, mayorIndex, j);
 		}
 
 		return numArray;
@@ -38,13 +38,73 @@ public class Sort {
 			int j = i;
 
 			while ((j > 0) && (array[j - 1] > array[j])) {
-				Sort.substitute(array, j, j - 1);
+				Sort.swap(array, j, j - 1);
 				j = j - 1;
 			}
 		}
-		
 		return array;
+	}
 
+	public static int[] selection(int[] array) {
+		for (int i = 0; i < array.length; i++) {
+
+			int menorIndex = i;
+
+			for (int j = i; j < array.length; j++) {
+				if (array[menorIndex] > array[j]) {
+					menorIndex = j;
+				}
+			}
+
+			Sort.swap(array, menorIndex, i);
+		}
+
+		return array;
+	}
+
+	// ARREGLAME
+	public static int[] merge(int[] array) {
+
+		int middleIndex = (int) (array.length / 2);
+
+		int firstArrayLength = middleIndex;
+		int secondArrayLength = array.length - middleIndex;
+
+		int[] firstArray = new int[firstArrayLength];
+		int[] secondArray = new int[secondArrayLength];
+
+		if (middleIndex > 0) {
+
+			for (int i = 0; i < firstArrayLength; i++) {
+				firstArray[i] = array[i];
+			}
+
+			for (int i = 0; i < secondArrayLength; i++) {
+				secondArray[i] = array[middleIndex + i];
+			}
+
+			firstArray = merge(firstArray);
+			secondArray = merge(secondArray);
+		}
+
+		int[] newArray = new int[array.length];
+
+		int i = 0;
+		int j = 0;
+
+		while (i < (firstArrayLength - 1) && j < (secondArrayLength - 1)) {
+
+			if (firstArray[i] < secondArray[j]) {
+				newArray[i + j] = firstArray[i];
+				i++;
+			} else {
+				newArray[i + j] = firstArray[j];
+				j++;
+			}
+
+		}
+
+		return newArray;
 	}
 
 	private static void innerQuickSort(int[] numArray, int indiceInferior, int indiceSuperior) {
@@ -62,7 +122,7 @@ public class Sort {
 				j--;
 			}
 			if (i <= j) {
-				substitute(numArray, j, i);
+				swap(numArray, j, i);
 				i++;
 				j--;
 			}
@@ -76,7 +136,7 @@ public class Sort {
 		}
 	}
 
-	private static int[] substitute(int[] array, int firstIndex, int secondIndex) {
+	private static int[] swap(int[] array, int firstIndex, int secondIndex) {
 
 		int temp = array[firstIndex];
 		array[firstIndex] = array[secondIndex];
