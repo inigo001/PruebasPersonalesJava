@@ -1,5 +1,9 @@
 package reordenar;
 
+/**
+ * @author inigo001
+ *
+ */
 public class Sort {
 
 	public static int[] bubble(int[] numArray) {

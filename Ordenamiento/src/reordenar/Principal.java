@@ -13,6 +13,8 @@ public class Principal {
 		
 		showArrayContent(numArray);
 		
+		System.out.println(Numbers.euclid(78958, 15514564));
+		
 	}
 
 	private static int[] createArray(int amount, int maximum) {
@@ -29,12 +31,14 @@ public class Principal {
 
 	private static void showArrayContent(int[] numArray) {
 
-		System.out.println("-----\nArray Length: " + numArray.length);
+		System.out.println("Array Length: " + numArray.length);
 		System.out.println("Array Content:");
 
 		for (int i = 0; i < numArray.length; i++) {
 			System.out.print(numArray[i] + ", ");
 		}
+		
+		System.out.println("\n");
 
 	}
 
