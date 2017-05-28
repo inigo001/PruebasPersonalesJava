@@ -9,9 +9,9 @@ public class Principal {
 		
 		showArrayContent(numArray);
 
-		int[] sortedArray = Sort.merge(numArray);
+		Sort.merge(numArray);
 		
-		showArrayContent(sortedArray);
+		showArrayContent(numArray);
 		
 	}
 
