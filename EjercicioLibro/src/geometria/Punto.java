@@ -4,6 +4,8 @@ public class Punto {
 	private double x;
 	private double y;
 
+	/* CONSTRUCTORES */
+
 	public Punto(double x, double y) {
 		this.x = x;
 		this.y = y;
@@ -19,6 +21,8 @@ public class Punto {
 		this.y = punto.y;
 	}
 
+	/* METODOS PÚBLICOS */
+
 	public void desplazar(double x, double y) {
 		this.x += x;
 		this.y += y;
@@ -30,7 +34,6 @@ public class Punto {
 	}
 
 	public void desplazar(Direccion direccion) {
-
 		switch (direccion) {
 		case ARRIBA:
 			this.y++;
@@ -47,7 +50,6 @@ public class Punto {
 		default:
 			break;
 		}
-
 	}
 
 	public double distancia(Punto puntoAComparar) {

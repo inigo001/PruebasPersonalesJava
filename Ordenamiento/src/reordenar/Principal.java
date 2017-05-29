@@ -9,9 +9,9 @@ public class Principal {
 		
 		showArrayContent(numArray);
 
-		int[] testArray = Sort.quickSort(numArray);
+		Sort.merge(numArray);
 		
-		showArrayContent(testArray);
+		showArrayContent(numArray);
 		
 		System.out.println(Numbers.euclid(78958, 15514564));
 		

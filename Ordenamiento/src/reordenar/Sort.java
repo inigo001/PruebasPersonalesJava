@@ -69,50 +69,48 @@ public class Sort {
 	// ARREGLAME
 	public static void merge(int[] array) {
 
-		if (array.length <= 1) {
-			return;
-		}
+		if (array.length > 1) {
 
-		int halfArray = (int) (array.length / 2);
+			int halfArray = (int) (array.length / 2);
 
-		int[] leftArray = new int[halfArray];
-		int[] rightArray = new int[array.length - halfArray];
+			int[] leftArray = new int[halfArray];
+			int[] rightArray = new int[array.length - halfArray];
 
-		for (int i = 0; i < leftArray.length; i++) {
-			leftArray[i] = array[i];
-		}
+			for (int i = 0; i < leftArray.length; i++) {
+				leftArray[i] = array[i];
+			}
 
-		for (int i = 0; i < rightArray.length; i++) {
-			rightArray[i] = array[halfArray + i];
-		}
+			for (int i = 0; i < rightArray.length; i++) {
+				rightArray[i] = array[halfArray + i];
+			}
 
-		Sort.merge(leftArray);
-		Sort.merge(rightArray);
+			Sort.merge(leftArray);
+			Sort.merge(rightArray);
 
-		int i = 0;
-		int j = 0;
+			int i = 0;
+			int j = 0;
 
-		while (i < leftArray.length && j < rightArray.length) {
+			while (i < leftArray.length && j < rightArray.length) {
 
-			if (leftArray[i] > rightArray[j]) {
-				array[i + j] = rightArray[j];
-				j++;
-			} else {
+				if (leftArray[i] > rightArray[j]) {
+					array[i + j] = rightArray[j];
+					j++;
+				} else {
+					array[i + j] = leftArray[i];
+					i++;
+				}
+			}
+
+			while (i < leftArray.length) {
 				array[i + j] = leftArray[i];
 				i++;
 			}
-		}
+			while (j < rightArray.length) {
+				array[i + j] = rightArray[j];
+				j++;
+			}
 
-		while (i < leftArray.length) {
-			array[i + j] = leftArray[i];
-			i++;
 		}
-		while (j < rightArray.length) {
-			array[i + j] = rightArray[j];
-			j++;
-		}
-
-		return;
 
 	}
 
