@@ -7,7 +7,7 @@ public class Programa {
 		Punto punto1 = new Punto(2, 3);
 		punto1.desplazar(Direccion.ARRIBA);
 		System.out.println(punto1);
-
+/*
 		Punto punto2 = new Punto(4, 2);
 
 		System.out.println(Punto.distancia(punto1, punto2));
@@ -28,7 +28,12 @@ public class Programa {
 		
 		circulo2.escalar(150);
 		System.out.println(circulo2);
+		*/
 		
+		Rectangulo rect1 = new Rectangulo (punto1,5,7);
+		System.out.println(rect1);
+		rect1.desplazar(7,12);
+		System.out.println(rect1);
 	}
 
 }
