@@ -43,5 +43,7 @@ public class Programa {
 			System.out.println("Pulse Intro para volver a jugar");
 			teclado.nextLine();
 		}
+		
+		teclado.close();
 	}
 }
