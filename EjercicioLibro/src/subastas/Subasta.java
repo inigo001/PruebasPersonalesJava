@@ -4,10 +4,10 @@ import java.util.LinkedList;
 
 public class Subasta {
 
-	private String nombreProducto;
-	private Usuario propietario;
-	private boolean isOpen;
-	private LinkedList<Puja> pujas;
+	protected String nombreProducto;
+	protected Usuario propietario;
+	protected boolean isOpen;
+	protected LinkedList<Puja> pujas;
 
 	/* CONSTRUCTOR */
 
@@ -23,10 +23,10 @@ public class Subasta {
 	/* PRIVATE METHODS */
 
 	// TODO avisar de cómo se puede arreglar esta mierda.
-	public boolean isValidPuja(Usuario pujador, double valorPuja) {
+	private boolean isValidPuja(Usuario pujador, double valorPuja) {
 		return (isOpen == true) 
-				&& (pujador.getCredito() >= valorPuja) 
-				&& (this.getPujaMayor() == null || this.getPujaMayor().getValor() <= valorPuja) 
+				&& (pujador.getCredito() >= valorPuja)
+				&& (this.getPujaMayor() == null || this.getPujaMayor().getValor() <= valorPuja)
 				&& (pujador != this.propietario);
 
 	}
@@ -41,7 +41,7 @@ public class Subasta {
 			Puja nuevaPuja = new Puja(pujador, valorPuja);
 			pujas.add(nuevaPuja);
 		}
-		
+
 		return pujaValida;
 	}
 
@@ -57,7 +57,7 @@ public class Subasta {
 		}
 
 		boolean pujaValida = isValidPuja(pujador, valorPuja);
-		
+
 		if (pujaValida) {
 			Puja nuevaPuja = new Puja(pujador, valorPuja);
 			this.pujas.add(nuevaPuja);
