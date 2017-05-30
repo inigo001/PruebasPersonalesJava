@@ -16,13 +16,18 @@ public class Subasta {
 		this.propietario = propietario;
 		this.isOpen = true;
 		this.pujas = new LinkedList<Puja>();
+
+		this.propietario.addSubastaPropia(this);
 	}
 
 	/* PRIVATE METHODS */
 
+	// TODO avisar de cómo se puede arreglar esta mierda.
 	public boolean isValidPuja(Usuario pujador, double valorPuja) {
-		return (isOpen == true) && (pujador.getCredito() >= valorPuja) && (pujador != this.propietario)
-				&& (this.getPujaMayor().getValor() <= valorPuja);
+		return (isOpen == true) 
+				&& (pujador.getCredito() >= valorPuja) 
+				&& (this.getPujaMayor() == null || this.getPujaMayor().getValor() <= valorPuja) 
+				&& (pujador != this.propietario);
 
 	}
 
@@ -36,7 +41,7 @@ public class Subasta {
 			Puja nuevaPuja = new Puja(pujador, valorPuja);
 			pujas.add(nuevaPuja);
 		}
-
+		
 		return pujaValida;
 	}
 
@@ -52,10 +57,10 @@ public class Subasta {
 		}
 
 		boolean pujaValida = isValidPuja(pujador, valorPuja);
-
+		
 		if (pujaValida) {
 			Puja nuevaPuja = new Puja(pujador, valorPuja);
-			pujas.add(nuevaPuja);
+			this.pujas.add(nuevaPuja);
 		}
 
 		return pujaValida;
@@ -101,6 +106,11 @@ public class Subasta {
 		} else {
 			return null;
 		}
+	}
+
+	public String toString() {
+		return "Nombre de producto: " + this.nombreProducto + ". Propietario: " + this.propietario + ". Está abierta: "
+				+ this.isOpen + ". Puja Mayor: " + this.getPujaMayor();
 	}
 
 }

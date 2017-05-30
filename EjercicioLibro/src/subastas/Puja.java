@@ -22,4 +22,8 @@ public class Puja {
 		return this.valor;
 	}
 
+	public String toString() {
+		return "(" + this.pujador + "," + this.valor + "€)";
+	}
+
 }
