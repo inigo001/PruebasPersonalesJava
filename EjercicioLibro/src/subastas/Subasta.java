@@ -28,7 +28,6 @@ public class Subasta {
 				&& (pujador.getCredito() >= valorPuja)
 				&& (this.getPujaMayor() == null || this.getPujaMayor().getValor() <= valorPuja)
 				&& (pujador != this.propietario);
-
 	}
 
 	/* PUBLIC METHODS */
@@ -68,7 +67,7 @@ public class Subasta {
 
 	public boolean ejecutar() {
 		boolean pujaRealizable = (this.isOpen) && (this.pujas.size() != 0);
-
+		
 		if (pujaRealizable) {
 			Usuario pujadorVencedor = this.getPujaMayor().getPujador();
 

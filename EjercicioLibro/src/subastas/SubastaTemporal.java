@@ -24,10 +24,20 @@ public class SubastaTemporal extends SubastaLimitada {
 		return (int) (milli / (1000 * 60 * 60));
 	}
 
+	private boolean finalizarPujar() {
+		boolean esEjecutable = super.ejecutar();
+
+		if (!esEjecutable) {
+			this.isOpen = false;
+			esEjecutable = true;
+		}
+		return esEjecutable;
+	}
+
 	// PUBLIC METHODS
 
 	public boolean ejecutar() {
-		System.out.println("Las subastas temporales no pueden ser ejecutadas manualmente.");
+		System.out.println("ERROR: Las subastas temporales no pueden ser ejecutadas manualmente.");
 		return false;
 	}
 

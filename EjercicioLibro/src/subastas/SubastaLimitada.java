@@ -16,6 +16,7 @@ public class SubastaLimitada extends Subasta {
 
 	// PRIVATE METHODS
 
+	// TODO comprobar si es correcto
 	private void aumentarContador() {
 		this.contadorPujas++;
 
