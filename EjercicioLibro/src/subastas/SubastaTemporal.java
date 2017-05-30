@@ -24,6 +24,7 @@ public class SubastaTemporal extends SubastaLimitada {
 		return (int) (milli / (1000 * 60 * 60));
 	}
 
+	// TODO crear Timer y Evento para que sea capaz de leer esto
 	private boolean finalizarPujar() {
 		boolean esEjecutable = super.ejecutar();
 

@@ -12,7 +12,7 @@ public class Principal {
 		Sort.merge(numArray);
 		
 		showArrayContent(numArray);
-		
+				
 		System.out.println(Numbers.euclid(78958, 15514564));
 		
 	}
