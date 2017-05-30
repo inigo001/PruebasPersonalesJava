@@ -6,7 +6,13 @@ public class Alumno {
 
 	/* VARIABLES */
 
+	/**
+	 * Nombre del alumno
+	 */
 	private String nombre;
+	/**
+	 * DNI del alumno
+	 */
 	private String dni;
 	private double credito;
 	private LinkedList<Curso> cursos;
