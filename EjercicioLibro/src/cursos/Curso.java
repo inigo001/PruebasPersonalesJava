@@ -3,6 +3,17 @@ package cursos;
 import java.util.Date;
 import java.util.LinkedList;
 
+/**
+ * Clase abstracta Curso. Contiene los datos principales de un curso como su
+ * título, la fecha de inicio, etc... Contiene Alumnos La funcionalidad
+ * principal se encuentra en las clases hijas
+ * 
+ * @author inigo001
+ * @version 0.1
+ * @see Alumno
+ * @see CursoOnline
+ * @see CursoPresencial
+ */
 public abstract class Curso {
 
 	/* VARIABLES */
@@ -113,8 +124,7 @@ public abstract class Curso {
 
 	/* PROPIOS */
 
-	public String toString()
-	{
+	public String toString() {
 		return this.titulo;
 	}
 
