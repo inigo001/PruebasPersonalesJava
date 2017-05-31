@@ -29,4 +29,27 @@ public class Numbers {
 		return firstNumber;
 	}
 
+	/**
+	 * @param position
+	 *            Introducimos la posicion del numero que estamos buscando
+	 *            dentro de la sucesión de Fibonacci
+	 *
+	 * @return Devuelve el número en la posición seleccionada
+	 */
+	public static int fibonacci(int position) {
+		// Reducimos la posicion
+		position--;
+
+		int i = 1;
+		int j = 0;
+
+		for (int k = 0; k < position; k++) {
+			int temp = i + j;
+			j = i;
+			i = temp;
+		}
+
+		return j;
+	}
+
 }

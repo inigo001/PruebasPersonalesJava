@@ -15,6 +15,8 @@ public class Principal {
 				
 		System.out.println(Numbers.euclid(78958, 15514564));
 		
+		System.out.println(Numbers.fibonacci(12));
+		
 	}
 
 	private static int[] createArray(int amount, int maximum) {
