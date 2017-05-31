@@ -83,11 +83,12 @@ public class CursoPresencial extends Curso {
 
 		if (isMatriculado) {
 			this.alumnos.add(alumno);
+			alumno.anadirCurso(this);
+			alumno.decrementarCredito(this.precio);
 			plazasLibres--;
 		}
 
 		return isMatriculado;
-
 	}
 
 	/* GET Y SET */
@@ -111,11 +112,9 @@ public class CursoPresencial extends Curso {
 	/* PROPIAS */
 
 	public CursoPresencial clone() {
-		Date fechaInicio = (Date) this.fechaInicio.clone();
-		Date fechaFin = (Date) this.fechaFin.clone();
 
-		CursoPresencial nuevoCursoPresencial = new CursoPresencial(this.titulo, fechaInicio, fechaFin, this.dias,
-				this.precio, this.cupo, this.numeroAsistencias);
+		CursoPresencial nuevoCursoPresencial = new CursoPresencial(this.titulo, this.fechaInicio, this.fechaFin,
+				this.dias, this.precio, this.cupo, this.numeroAsistencias);
 
 		return nuevoCursoPresencial;
 	}

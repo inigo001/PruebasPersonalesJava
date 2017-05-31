@@ -20,13 +20,13 @@ public abstract class Curso {
 
 	public Curso(String titulo, Date fechaInicio, Date fechaFin, int dias, double precio) {
 		this.titulo = titulo;
-		this.fechaInicio = fechaInicio;
-		this.fechaFin = fechaFin;
+		this.fechaInicio = (Date) fechaInicio.clone();
+		this.fechaFin = (Date) fechaFin.clone();
 		this.dias = dias;
 		this.precio = precio;
 
 		this.alumnos = new LinkedList<Alumno>();
-		this.alumnosAptos = null;
+		this.alumnosAptos = new LinkedList<Alumno>();
 		this.numeroAlumnos = 0;
 	}
 
@@ -43,9 +43,6 @@ public abstract class Curso {
 	}
 
 	//
-	public abstract boolean isAlumnoApto(Alumno alumno);
-
-	//
 	public boolean matricularAlumno(Alumno alumno) {
 		boolean isMatriculado = false;
 
@@ -58,11 +55,26 @@ public abstract class Curso {
 
 	//
 	public boolean calificar() {
-		// Aqui va el codigo de calificacion de todos los alumnos,
-		// con una iteración sobre todos ellos para darles nota.
-		// Al terminarlo, devolvemos TRUE, si es que ha terminado el proceso :)
 
+		for (int i = 0; i < this.alumnos.size(); i++) {
+			Alumno alumno = this.alumnos.get(i);
+
+			if (this.isAlumnoApto(alumno)) {
+				this.alumnosAptos.add(alumno);
+			}
+		}
 		return true;
+	}
+
+	//
+	public abstract boolean isAlumnoApto(Alumno alumno);
+
+	// * \\
+
+	public LinkedList<Alumno> listaAlumnosOrdenada() {
+		LinkedList<Alumno> listaAlumnos = new LinkedList<Alumno>(this.alumnos);
+		listaAlumnos.sort(new ComparadorAlumnos());
+		return listaAlumnos;
 	}
 
 	/* SET Y GET */
@@ -92,11 +104,18 @@ public abstract class Curso {
 	}
 
 	public LinkedList<Alumno> getAlumnosAptos() {
-		return this.alumnosAptos;
+		return (this.alumnosAptos.size() > 0) ? this.alumnosAptos : null;
 	}
 
 	public int getNumeroAlumnos() {
 		return this.numeroAlumnos;
+	}
+
+	/* PROPIOS */
+
+	public String toString()
+	{
+		return this.titulo;
 	}
 
 }

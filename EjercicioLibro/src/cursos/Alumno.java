@@ -27,7 +27,7 @@ public class Alumno {
 	}
 
 	public Alumno(String nombre, String dni) {
-		this(nombre, dni, 0);
+		this(nombre, dni, 100);
 	}
 
 	/* FUNCIONES PUBLICAS */
@@ -54,6 +54,10 @@ public class Alumno {
 		return this.dni;
 	}
 
+	public int getNumericDni() {
+		return Integer.parseInt(this.dni.substring(0, this.dni.length() - 1));
+	}
+
 	public double getCredito() {
 		return this.credito;
 	}
@@ -61,12 +65,11 @@ public class Alumno {
 	public LinkedList<Curso> getCursos() {
 		return this.cursos;
 	}
-	
+
 	/* PROPIAS */
-	
-	public String toString()
-	{
-		return  this.nombre + " // DNI: " + this.dni + " CRÉDITO: " + this.credito + " CURSOS: " + this.cursos;
+
+	public String toString() {
+		return this.nombre + " // DNI: " + this.dni + " CRÉDITO: " + this.credito + " CURSOS: " + this.cursos;
 	}
 
 }

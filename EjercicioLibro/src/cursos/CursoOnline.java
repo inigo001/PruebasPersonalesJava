@@ -56,13 +56,15 @@ public class CursoOnline extends Curso {
 		boolean isMatriculado = super.matricularAlumno(alumno);
 
 		for (int i = 0; i < cursosNecesarios.size(); i++) {
-			if (cursosNecesarios.get(i).isAlumnoApto(alumno)) {
+			if (!cursosNecesarios.get(i).isAlumnoApto(alumno)) {
 				isMatriculado = false;
 			}
 		}
 
 		if (isMatriculado) {
 			this.alumnos.add(alumno);
+			alumno.anadirCurso(this);
+			alumno.decrementarCredito(this.precio);
 		}
 
 		return isMatriculado;
@@ -85,12 +87,10 @@ public class CursoOnline extends Curso {
 	/* PROPIAS */
 
 	public CursoOnline clone() {
-		Date fechaInicio = (Date) this.fechaInicio.clone();
-		Date fechaFin = (Date) this.fechaFin.clone();
 		LinkedList<Curso> cursosNecesarios = new LinkedList<Curso>(this.cursosNecesarios);
 
-		CursoOnline nuevoCursoOnline = new CursoOnline(this.titulo, fechaInicio, fechaFin, this.dias, this.precio, this.nivelMaximo,
-				cursosNecesarios);
+		CursoOnline nuevoCursoOnline = new CursoOnline(this.titulo, this.fechaInicio, this.fechaFin, this.dias,
+				this.precio, this.nivelMaximo, cursosNecesarios);
 
 		return nuevoCursoOnline;
 	}
