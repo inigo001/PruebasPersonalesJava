@@ -3,16 +3,16 @@ package cursos;
 import java.util.Date;
 import java.util.LinkedList;
 
-public class Curso {
+public abstract class Curso {
 
 	/* VARIABLES */
 
 	private String titulo;
 	private Date fechaInicio;
 	private Date fechaFin;
-	private int dias;
+	protected int dias;
 	private double precio;
-	private LinkedList<Alumno> alumnos;
+	protected LinkedList<Alumno> alumnos;
 	private LinkedList<Alumno> alumnosAptos;
 	private int numeroAlumnos;
 
@@ -43,10 +43,7 @@ public class Curso {
 	}
 
 	//
-	public boolean isAlumnoApto(Alumno alumno) {
-		// Aqui va el codigo de validacion del alumno
-		return false;
-	}
+	public abstract boolean isAlumnoApto(Alumno alumno);
 
 	//
 	public boolean matricularAlumno(Alumno alumno) {
@@ -55,6 +52,7 @@ public class Curso {
 		if (alumno.getCredito() > this.precio) {
 			isMatriculado = true;
 		}
+		
 		return isMatriculado;
 	}
 

@@ -11,6 +11,7 @@ public class Main {
 
 		System.out.println(Curso.isOver(curso));
 		System.out.println(curso.isOver());
+		
 	}
 
 }
