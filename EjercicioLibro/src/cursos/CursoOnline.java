@@ -82,4 +82,17 @@ public class CursoOnline extends Curso {
 		return this.cursosNecesarios;
 	}
 
+	/* PROPIAS */
+
+	public CursoOnline clone() {
+		Date fechaInicio = (Date) this.fechaInicio.clone();
+		Date fechaFin = (Date) this.fechaFin.clone();
+		LinkedList<Curso> cursosNecesarios = new LinkedList<Curso>(this.cursosNecesarios);
+
+		CursoOnline nuevoCursoOnline = new CursoOnline(this.titulo, fechaInicio, fechaFin, this.dias, this.precio, this.nivelMaximo,
+				cursosNecesarios);
+
+		return nuevoCursoOnline;
+	}
+
 }

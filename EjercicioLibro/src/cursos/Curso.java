@@ -7,14 +7,14 @@ public abstract class Curso {
 
 	/* VARIABLES */
 
-	private String titulo;
-	private Date fechaInicio;
-	private Date fechaFin;
+	protected String titulo;
+	protected Date fechaInicio;
+	protected Date fechaFin;
 	protected int dias;
-	private double precio;
+	protected double precio;
 	protected LinkedList<Alumno> alumnos;
-	private LinkedList<Alumno> alumnosAptos;
-	private int numeroAlumnos;
+	protected LinkedList<Alumno> alumnosAptos;
+	protected int numeroAlumnos;
 
 	/* CONSTRUCTORES */
 
@@ -52,7 +52,7 @@ public abstract class Curso {
 		if (alumno.getCredito() > this.precio) {
 			isMatriculado = true;
 		}
-		
+
 		return isMatriculado;
 	}
 

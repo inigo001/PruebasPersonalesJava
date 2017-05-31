@@ -61,5 +61,12 @@ public class Alumno {
 	public LinkedList<Curso> getCursos() {
 		return this.cursos;
 	}
+	
+	/* PROPIAS */
+	
+	public String toString()
+	{
+		return  this.nombre + " // DNI: " + this.dni + " CRÉDITO: " + this.credito + " CURSOS: " + this.cursos;
+	}
 
 }

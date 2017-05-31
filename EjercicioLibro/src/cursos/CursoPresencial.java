@@ -22,11 +22,24 @@ public class CursoPresencial extends Curso {
 
 		this.cupo = cupo;
 		this.numeroAsistencias = numeroAsistencias;
-		this.asistenciasAlumnos = new HashMap<Integer, LinkedList<Alumno>>();
+		this.asistenciasAlumnos = this.crearAsistenciaAlumnos(dias);
 		this.plazasLibres = cupo;
 	}
 
 	/* METODOS */
+
+	private HashMap<Integer, LinkedList<Alumno>> crearAsistenciaAlumnos(int dias) {
+
+		HashMap<Integer, LinkedList<Alumno>> asistenciaAlumnos = new HashMap<Integer, LinkedList<Alumno>>();
+
+		for (int i = 0; i < dias; i++) {
+			LinkedList<Alumno> listaAlumnosDia = new LinkedList<Alumno>();
+			asistenciaAlumnos.put(i, listaAlumnosDia);
+		}
+
+		return asistenciaAlumnos;
+
+	}
 
 	public boolean registrarAsistencia(int dia, Alumno alumno) {
 
@@ -93,6 +106,18 @@ public class CursoPresencial extends Curso {
 
 	public int getPlazasLibres() {
 		return this.plazasLibres;
+	}
+
+	/* PROPIAS */
+
+	public CursoPresencial clone() {
+		Date fechaInicio = (Date) this.fechaInicio.clone();
+		Date fechaFin = (Date) this.fechaFin.clone();
+
+		CursoPresencial nuevoCursoPresencial = new CursoPresencial(this.titulo, fechaInicio, fechaFin, this.dias,
+				this.precio, this.cupo, this.numeroAsistencias);
+
+		return nuevoCursoPresencial;
 	}
 
 }
