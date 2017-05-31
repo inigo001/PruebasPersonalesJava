@@ -4,6 +4,14 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Calendar;
 
+/**
+ * Programa base del ejercicio número 1 del libro.
+ * 
+ * @author inigo001
+ * @version 0.1
+ * @see <a href="http://dis.um.es/docencia/poo/wiki/lib/exe/fetch.php?media=curso2016:ejercicio1-cursos.pdf">PDF del libro</a>
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {
