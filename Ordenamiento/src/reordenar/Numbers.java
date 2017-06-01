@@ -52,4 +52,27 @@ public class Numbers {
 		return j;
 	}
 
+	/**
+	 * Algoritmo loco para descubrir si un número es primo o no. Es un poco
+	 * cutre porque recorre todos los números posibles, sumándolos. TODO hacerlo
+	 * mejor.
+	 * 
+	 * @param number
+	 *            Numero a analizar
+	 * @return Devuelve true si es primo o false si no lo es.
+	 */
+	public static boolean isPrime(int number) {
+		boolean isPrime = true;
+
+		if (number <= 0) {
+			isPrime = false;
+		}
+		if (number > 3 && isPrime) {
+			for (int i = 2; (i < number * 0.5) && (isPrime); i++) {
+				isPrime = !((number % i) == 0);
+			}
+		}
+		return isPrime;
+	}
+
 }

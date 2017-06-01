@@ -7,15 +7,17 @@ public class Principal {
 		
 		int[] numArray = createArray(56, 1000);
 		
-		showArrayContent(numArray);
+		//showArrayContent(numArray);
 
 		Sort.merge(numArray);
 		
-		showArrayContent(numArray);
+		//showArrayContent(numArray);
 				
-		System.out.println(Numbers.euclid(78958, 15514564));
+		//System.out.println(Numbers.euclid(78958, 15514564));
 		
-		System.out.println(Numbers.fibonacci(12));
+		//System.out.println(Numbers.fibonacci(12));
+		
+		System.out.println(Numbers.isPrime(6));
 		
 	}
 
