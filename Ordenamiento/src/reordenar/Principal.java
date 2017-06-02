@@ -2,12 +2,18 @@ package reordenar;
 
 public class Principal {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 
-		int[] numArray = createArray(50000000, 100000000);
-
-		Principal.singleThread(numArray);
+		int[] numArray = createArray(5000000, 100000000);
+		int[] arraySingle = numArray.clone();
+		
+		Principal.singleThread(arraySingle);
+		Principal.multiThread(numArray);
+		
+		System.out.println(arraySingle[1]);
+		System.out.println(numArray[1]);
+		
 	}
 
 	private static int[] createArray(int amount, int maximum) {
@@ -30,8 +36,6 @@ public class Principal {
 		System.out.println("Tiempo de tardanza: " + (System.currentTimeMillis() - initialTime));
 
 		System.out.println("ArrayOrdenado");
-		System.out.println(numArray[numArray.length - 1]);
-
 	}
 
 	private static class QuickSortThread implements Runnable {
@@ -40,7 +44,7 @@ public class Principal {
 		private int indiceSup;
 		private int indiceInf;
 
-		public QuickSortThread(int[] miArray, int indiceSup, int indiceInf) {
+		public QuickSortThread(int[] miArray, int indiceInf, int indiceSup) {
 			this.miArray = miArray;
 			this.indiceSup = indiceSup;
 			this.indiceInf = indiceInf;
@@ -57,19 +61,20 @@ public class Principal {
 
 	private static void multiThread(int[] numArray) throws InterruptedException {
 
+		long initialTime = System.currentTimeMillis();
+		
 		int indiceCentral = (int) (numArray.length / 2);
 
 		Thread hilo1 = new Thread(new QuickSortThread(numArray, 0, indiceCentral), "Hilo 1");
-		Thread hilo2 = new Thread(new QuickSortThread(numArray, indiceCentral + 1, numArray.length), "Hilo 2");
+		Thread hilo2 = new Thread(new QuickSortThread(numArray, indiceCentral + 1, numArray.length - 1), "Hilo 2");
 
-		hilo1.start();
 		hilo2.start();
+		hilo1.start();
 
 		hilo1.join();
 		hilo2.join();
 		
-		System.out.println("terminé");
-
+		System.out.println("Tiempo de tardanza: " + (System.currentTimeMillis() - initialTime));				
 	}
 
 	private static void showArrayContent(int[] numArray) {
