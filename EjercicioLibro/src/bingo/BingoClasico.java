@@ -7,10 +7,17 @@ public class BingoClasico extends Bingo {
 
 	final static int BOLA_MAYOR = 90;
 	final static int TAMANO_CARTON = 15;
+	private int numeroMaximoCartones;
 
-	public BingoClasico() {
+	/* CONSTRUCTORES */
+
+	public BingoClasico(int numeroMaximoCartones) {
 		super(BingoClasico.BOLA_MAYOR, BingoClasico.TAMANO_CARTON);
+
+		this.numeroMaximoCartones = numeroMaximoCartones;
 	}
+
+	/* METODOS */
 
 	@Override
 	protected boolean isAcceptable(Carton carton) {
@@ -30,6 +37,27 @@ public class BingoClasico extends Bingo {
 		}
 
 		return isAcceptable;
+	}
+
+	@Override
+	public Carton crearCarton() {
+		Carton nuevoCarton = null;
+
+		if (this.getRemainingCartones() > 0) {
+			nuevoCarton = super.crearCarton();
+		}
+
+		return nuevoCarton;
+	}
+
+	/* GET Y SET */
+
+	public int getNumeroMaximoCartones() {
+		return numeroMaximoCartones;
+	}
+
+	public int getRemainingCartones() {
+		return (this.numeroMaximoCartones - this.getNumeroCartones());
 	}
 
 }

@@ -26,4 +26,32 @@ public class BingoAmericano extends Bingo {
 		return isAcceptable;
 	}
 
+	/*
+	 * (non-Javadoc) Esto es un chapuza
+	 * 
+	 * @see bingo.Bingo#girar()
+	 */
+	@Override
+	public int girar() {
+
+		int previousNumber = -1;
+		int numeroExtraido;
+
+		boolean areConsecutive;
+
+		do {
+			areConsecutive = false;
+			numeroExtraido = super.girar();
+
+			if ((previousNumber + 1 == numeroExtraido)) {
+				areConsecutive = true;
+				previousNumber = numeroExtraido;
+				this.anadirBola(numeroExtraido);
+			}
+
+		} while (areConsecutive);
+
+		return numeroExtraido;
+	}
+
 }

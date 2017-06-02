@@ -25,6 +25,8 @@ public abstract class Bingo {
 	private ArrayList<Integer> bolasExtraidas;
 	private int ultimaBolaExtraida;
 	private ArrayList<Carton> cartones;
+	private ArrayList<Carton> cartonesBingo;
+	private boolean finalizado;
 
 	/* CONSTRUCTORES */
 
@@ -35,6 +37,8 @@ public abstract class Bingo {
 		this.bolasExtraidas = new ArrayList<Integer>();
 		this.ultimaBolaExtraida = 0;
 		this.cartones = new ArrayList<Carton>();
+		this.cartonesBingo = new ArrayList<Carton>();
+		this.finalizado = false;
 	}
 
 	/**
@@ -81,7 +85,24 @@ public abstract class Bingo {
 		// extraídas.
 		this.bolasExtraidas.add(numeroResultado);
 
+		if (this.bolasExtraidas.size() >= this.tamanoCarton) {
+			this.comprobarBingo();
+		}
+
 		return numeroResultado;
+	}
+
+	private void comprobarBingo() {
+
+		for (int i = 0; i < this.cartones.size(); i++) {
+			boolean isBingo = this.cartones.get(i).isBingo(this.bolasExtraidas);
+
+			if (isBingo) {
+				this.cartonesBingo.add(this.cartones.get(i));
+				this.finalizado = true;
+			}
+		}
+
 	}
 
 	/**
@@ -157,6 +178,10 @@ public abstract class Bingo {
 		}
 	}
 
+	protected void anadirBola(int bola) {
+		this.bombo.add(bola);
+	}
+
 	/* GET Y SET */
 
 	public int getBolaMayor() {
@@ -180,7 +205,23 @@ public abstract class Bingo {
 	}
 
 	public ArrayList<Carton> getCartones() {
-		return this.cartones;
+		return new ArrayList<Carton>(this.cartones);
+	}
+
+	public ArrayList<Carton> getCartonesBingo() {
+		return new ArrayList<Carton>(this.cartonesBingo);
+	}
+
+	public boolean getFinalizado() {
+		return this.finalizado;
+	}
+
+	public int getNumeroCartones() {
+		return this.cartones.size();
+	}
+
+	public int getNumeroCartonesBingo() {
+		return this.cartonesBingo.size();
 	}
 
 }
