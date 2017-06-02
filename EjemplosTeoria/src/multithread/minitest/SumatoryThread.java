@@ -4,7 +4,6 @@ public class SumatoryThread implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 
 		while (MainProgram.miNumero <= MainProgram.MAX_NUMBER) {
 			this.sumarNumero();
@@ -22,6 +21,7 @@ public class SumatoryThread implements Runnable {
 
 	private synchronized void sumarNumero() {
 		MainProgram.miNumero++;
+		System.out.println("Tiempo: " + System.currentTimeMillis());
 
 		System.out.println(Thread.currentThread().getName() + " -> " + MainProgram.miNumero);
 	}

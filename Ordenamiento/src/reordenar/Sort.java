@@ -35,6 +35,35 @@ public class Sort {
 		return numArray;
 	}
 
+	public static void innerQuickSort(int[] numArray, int indiceInferior, int indiceSuperior) {
+		int i = indiceInferior;
+		int j = indiceSuperior;
+
+		int pivote = numArray[indiceInferior + (int) ((indiceSuperior - indiceInferior) / 2)];
+
+		while (i <= j) {
+
+			while (numArray[i] < pivote) {
+				i++;
+			}
+			while (numArray[j] > pivote) {
+				j--;
+			}
+			if (i <= j) {
+				swap(numArray, j, i);
+				i++;
+				j--;
+			}
+		}
+
+		if (indiceInferior < j) {
+			Sort.innerQuickSort(numArray, indiceInferior, j);
+		}
+		if (i < indiceSuperior) {
+			Sort.innerQuickSort(numArray, i, indiceSuperior);
+		}
+	}
+
 	public static int[] insertion(int[] array) {
 
 		for (int i = 0; i < array.length; i++) {
@@ -112,35 +141,6 @@ public class Sort {
 
 		}
 
-	}
-
-	private static void innerQuickSort(int[] numArray, int indiceInferior, int indiceSuperior) {
-		int i = indiceInferior;
-		int j = indiceSuperior;
-
-		int pivote = numArray[indiceInferior + (int) ((indiceSuperior - indiceInferior) / 2)];
-
-		while (i <= j) {
-
-			while (numArray[i] < pivote) {
-				i++;
-			}
-			while (numArray[j] > pivote) {
-				j--;
-			}
-			if (i <= j) {
-				swap(numArray, j, i);
-				i++;
-				j--;
-			}
-		}
-
-		if (indiceInferior < j) {
-			Sort.innerQuickSort(numArray, indiceInferior, j);
-		}
-		if (i < indiceSuperior) {
-			Sort.innerQuickSort(numArray, i, indiceSuperior);
-		}
 	}
 
 	private static int[] swap(int[] array, int firstIndex, int secondIndex) {

@@ -48,7 +48,7 @@ public class MainProgram {
 			System.out.println(Thread.currentThread().getName() + " -> " + MainProgram.miNumero);
 			hilo1.join(5000);
 		}
-
+		
 		System.out.println(Thread.currentThread().getName() + " - HILO CERRADO");
 
 	}
