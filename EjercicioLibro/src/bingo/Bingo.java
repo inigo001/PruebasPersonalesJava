@@ -10,7 +10,7 @@ import java.util.Collections;
  * @author inigo001
  *
  */
-public class Bingo {
+public abstract class Bingo {
 
 	/* VARIABLES */
 
@@ -34,8 +34,17 @@ public class Bingo {
 		this.bombo = this.createBombo(bolaMayor);
 		this.bolasExtraidas = new ArrayList<Integer>();
 		this.ultimaBolaExtraida = 0;
+		this.cartones = new ArrayList<Carton>();
 	}
 
+	/**
+	 * Crea un bombo en base a la cantidad de bolas que este tiene. Añade los
+	 * números desde el 1 hasta el valor de bola mayor.
+	 * 
+	 * @param bolaMayor
+	 *            En este caso representa el número de bolas que tiene el bombo.
+	 * @return Devuelve una lista de bolas, desordenada.
+	 */
 	private ArrayList<Integer> createBombo(int bolaMayor) {
 		ArrayList<Integer> bombo = new ArrayList<Integer>();
 		for (int i = 1; i <= bolaMayor; i++) {
@@ -75,24 +84,54 @@ public class Bingo {
 		return numeroResultado;
 	}
 
+	/**
+	 * Creamos un carton que contenga los numeros incluídos en el bombo del
+	 * juego. El cartón no puede tener números repetidos y no puede haber uno
+	 * que sea igual. Además, en la subclase existe una función para saber si un
+	 * carton es aceptable o no dependiendo de las reglas de éste. El cartón es
+	 * guardado en el listado de cartones que forman parte del Bingo.
+	 * 
+	 * @return Un cartón (de tipo Carton) que cumpla con las condiciones.
+	 * 
+	 */
 	public Carton crearCarton() {
-		Collections.shuffle(this.bombo);
-		ArrayList<Integer> numerosDeCarton = new ArrayList<Integer>();
 
 		Carton nuevoCarton;
 
 		do {
+			Collections.shuffle(this.bombo);
+			ArrayList<Integer> numerosDeCarton = new ArrayList<Integer>();
+
 			for (int i = 0; i < this.tamanoCarton; i++) {
 				numerosDeCarton.add(this.bombo.get(i));
 			}
 			nuevoCarton = new Carton(numerosDeCarton, this.tamanoCarton);
-		} while (this.cartones.contains(nuevoCarton));
+
+		} while (this.cartones.contains(nuevoCarton) || !this.isAcceptable(nuevoCarton));
 
 		this.anadirCarton(nuevoCarton);
 
 		return nuevoCarton;
 	}
 
+	/**
+	 * Comprueba si un cartón es aceptable dependiendo de las reglas del Bingo.
+	 * Esta función se sobreescribe en las subclases.
+	 * 
+	 * @param carton
+	 * @return Devuelve un booleano que marca si el cartón es aceptable o no.
+	 */
+	protected abstract boolean isAcceptable(Carton carton);
+
+	/**
+	 * Devuelve un número de cartones determinado mediante la función crear
+	 * cartones en forma de array.
+	 * 
+	 * @param numeroDeCartones
+	 *            Numero de cartones que queremos que el Bingo cree.
+	 * @return Array con los cartones que hemos creado. Todos cumplen con las
+	 *         condiciones de los cartones que impone el propio tipo de Bingo.
+	 */
 	public Carton[] crearCartones(int numeroDeCartones) {
 		numeroDeCartones = (numeroDeCartones > 0) ? numeroDeCartones : 1;
 		Carton[] grupoDeCartones = new Carton[numeroDeCartones];
@@ -104,6 +143,14 @@ public class Bingo {
 		return grupoDeCartones;
 	}
 
+	/**
+	 * Añade el cartón elegido a la lista de cartones de que tiene el propio
+	 * Bingo
+	 * 
+	 * @param carton
+	 *            El cartón que deseamos añadir. Está comprobado como cartón
+	 *            aceptable.
+	 */
 	public void anadirCarton(Carton carton) {
 		if (!this.cartones.contains(carton)) {
 			this.cartones.add(carton);

@@ -36,6 +36,16 @@ public class Carton {
 		return (numerosIguales >= this.tamanoCarton);
 	}
 
+	/* SET Y GET */
+
+	public int getTamanoCarton() {
+		return this.tamanoCarton;
+	}
+
+	public ArrayList<Integer> getNumerosDeCarton() {
+		return new ArrayList<Integer>(this.numerosDeCarton);
+	}
+
 	/* PROPIOS */
 
 	public boolean equals(Carton carton) {
