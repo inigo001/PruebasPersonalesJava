@@ -1,5 +1,11 @@
 package bingo;
 
+/**
+ * @author inigo001
+ * 
+ * @see <a href="http://dis.um.es/docencia/poo/wiki/lib/exe/fetch.php?media=curso2016:ejercicio4-bingo.pdf">Bingo</a>
+ *
+ */
 public class Programa {
 
 	public static void main(String[] args) {
