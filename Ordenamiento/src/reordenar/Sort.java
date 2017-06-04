@@ -143,7 +143,7 @@ public class Sort {
 
 	}
 
-	private static int[] swap(int[] array, int firstIndex, int secondIndex) {
+	public static int[] swap(int[] array, int firstIndex, int secondIndex) {
 
 		int temp = array[firstIndex];
 		array[firstIndex] = array[secondIndex];

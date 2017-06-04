@@ -1,19 +1,24 @@
 package reordenar;
 
+import java.util.Arrays;
+
 public class Principal {
 
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 
-		int[] numArray = createArray(5000000, 100000000);
+		int[] numArray = createArray(50000000, 100000000);
 		int[] arraySingle = numArray.clone();
-		
+
+		System.out.println(numArray[25]);
+		System.out.println(arraySingle[25]);
+
 		Principal.singleThread(arraySingle);
 		Principal.multiThread(numArray);
-		
-		System.out.println(arraySingle[1]);
-		System.out.println(numArray[1]);
-		
+
+		System.out.println(arraySingle[250]);
+		System.out.println(numArray[250]);
+
 	}
 
 	private static int[] createArray(int amount, int maximum) {
@@ -40,21 +45,19 @@ public class Principal {
 
 	private static class QuickSortThread implements Runnable {
 
-		private int[] miArray;
-		private int indiceSup;
-		private int indiceInf;
+		public int[] miArray;
+		public int indiceSuperior;
+		public int indiceInferior;
 
-		public QuickSortThread(int[] miArray, int indiceInf, int indiceSup) {
+		public QuickSortThread(int[] miArray , int indiceInferior, int indiceSuperior) {
 			this.miArray = miArray;
-			this.indiceSup = indiceSup;
-			this.indiceInf = indiceInf;
+			this.indiceInferior = indiceInferior;
+			this.indiceSuperior = indiceSuperior;
 		}
 
 		@Override
-		public void run() {
-
-			Sort.innerQuickSort(miArray, indiceInf, indiceSup);
-
+		public synchronized void run() {
+			Sort.innerQuickSort(miArray, indiceInferior, indiceSuperior);
 		}
 
 	}
@@ -63,18 +66,37 @@ public class Principal {
 
 		long initialTime = System.currentTimeMillis();
 		
+		int i = 0;
+		int j = numArray.length - 1;
 		int indiceCentral = (int) (numArray.length / 2);
 
-		Thread hilo1 = new Thread(new QuickSortThread(numArray, 0, indiceCentral), "Hilo 1");
-		Thread hilo2 = new Thread(new QuickSortThread(numArray, indiceCentral + 1, numArray.length - 1), "Hilo 2");
+		int pivote = numArray[indiceCentral];
 
-		hilo2.start();
+		while (i <= j) {
+
+			while (numArray[i] < pivote) {
+				i++;
+			}
+			while (numArray[j] > pivote) {
+				j--;
+			}
+			if (i <= j) {
+				Sort.swap(numArray, j, i);
+				i++;
+				j--;
+			}
+		}
+		
+		Thread hilo1 = new Thread(new QuickSortThread(numArray, 0, j));
+		Thread hilo2 = new Thread(new QuickSortThread(numArray, i, numArray.length - 1));
+				
 		hilo1.start();
-
+		hilo2.start();
+		
 		hilo1.join();
 		hilo2.join();
-		
-		System.out.println("Tiempo de tardanza: " + (System.currentTimeMillis() - initialTime));				
+
+		System.out.println("Tiempo de tardanza: " + (System.currentTimeMillis() - initialTime));
 	}
 
 	private static void showArrayContent(int[] numArray) {
