@@ -2,7 +2,7 @@ package reordenar;
 
 public class ThreadedReorder {
 
-	public static final int MAX_THREADS = 0;
+	public static final int MAX_THREADS = 4;
 	public static int numberOfThreads;
 
 	public static void main(String[] args) throws InterruptedException {
@@ -12,9 +12,14 @@ public class ThreadedReorder {
 		// memoria, pero cada int ocupa 4 bytes, por lo que son 8 Gigas de RAM
 		// que nos tragamos xD. Cuidado con esto en ordenadorcitos tontorrones
 		// xD.
-		int[] numArray = createArray(Integer.parseInt(args[0]), 100000000);
 
-		numberOfThreads = ThreadedReorder.MAX_THREADS;
+		int arrayLength = (args.length > 0) ? Integer.parseInt(args[0]) : 10000000;
+
+		int[] numArray = createArray(arrayLength, 100000000);
+
+		// System.out.println(numArray[110000000]);
+
+		numberOfThreads = (args.length >= 2) ? Integer.parseInt(args[1]) : ThreadedReorder.MAX_THREADS;
 
 		long initialTime = System.currentTimeMillis();
 
