@@ -7,7 +7,7 @@ public class Principal {
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 
-		int[] numArray = createArray(50000000, 100000000);
+		int[] numArray = createArray(150000000, 100000000);
 		int[] arraySingle = numArray.clone();
 
 		System.out.println(numArray[25]);
@@ -71,10 +71,19 @@ public class Principal {
 
 		int i = 0;
 		int j = numArray.length - 1;
-		int indiceCentral = (int) (numArray.length / 2);
 
-		//int pivote = numArray[indiceCentral];
-		int pivote = 50000000;
+		int numeroInferior = numArray[0];
+		int numeroSuperior = numArray[0];
+
+		for (int k = 1; k < numArray.length; k++) {
+			if (numArray[k] > numeroSuperior) {
+				numeroSuperior = numArray[k];
+			} else if (numArray[k] < numeroInferior) {
+				numeroInferior = numArray[k];
+			}
+		}
+
+		int pivote = (int) (numeroInferior + ((numeroSuperior - numeroInferior) * 0.5));
 
 		while (i <= j) {
 

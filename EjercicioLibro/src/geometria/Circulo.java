@@ -4,6 +4,13 @@ public class Circulo {
 
 	private Punto centro;
 	private int radio;
+	// Las variables calculadas no tiene sentido tenerlas como variables de
+	// objeto porque se recalculan con otras variables. Puede producir errores
+	// porque cada vez que cambiamos los otros datos tenemos que recalcular el
+	// perímetro y podemos equivocarnos.
+	// Como regla de estilo, las variables calculadas (dependientes de otros
+	// datos) no se crean, se crean solo aquellas que definen el objeto, en este
+	// caso centro y radio.
 	private double perimetro;
 
 	private final static Punto COORD_ORIGEN = new Punto(0, 0);
