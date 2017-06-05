@@ -14,10 +14,13 @@ public class Principal {
 		System.out.println(arraySingle[25]);
 
 		Principal.singleThread(arraySingle);
+
+		// arraySingle = new int[0];
+
 		Principal.multiThread(numArray);
 
-		System.out.println(arraySingle[250]);
-		System.out.println(numArray[250]);
+		System.out.println(arraySingle[7856138]);
+		System.out.println(numArray[7856138]);
 
 	}
 
@@ -49,14 +52,14 @@ public class Principal {
 		public int indiceSuperior;
 		public int indiceInferior;
 
-		public QuickSortThread(int[] miArray , int indiceInferior, int indiceSuperior) {
+		public QuickSortThread(int[] miArray, int indiceInferior, int indiceSuperior) {
 			this.miArray = miArray;
 			this.indiceInferior = indiceInferior;
 			this.indiceSuperior = indiceSuperior;
 		}
 
 		@Override
-		public synchronized void run() {
+		public void run() {
 			Sort.innerQuickSort(miArray, indiceInferior, indiceSuperior);
 		}
 
@@ -65,12 +68,13 @@ public class Principal {
 	private static void multiThread(int[] numArray) throws InterruptedException {
 
 		long initialTime = System.currentTimeMillis();
-		
+
 		int i = 0;
 		int j = numArray.length - 1;
 		int indiceCentral = (int) (numArray.length / 2);
 
-		int pivote = numArray[indiceCentral];
+		//int pivote = numArray[indiceCentral];
+		int pivote = 50000000;
 
 		while (i <= j) {
 
@@ -86,13 +90,13 @@ public class Principal {
 				j--;
 			}
 		}
-		
+
 		Thread hilo1 = new Thread(new QuickSortThread(numArray, 0, j));
 		Thread hilo2 = new Thread(new QuickSortThread(numArray, i, numArray.length - 1));
-				
+
 		hilo1.start();
 		hilo2.start();
-		
+
 		hilo1.join();
 		hilo2.join();
 

@@ -28,27 +28,31 @@ public class Punto {
 		this.y += y;
 	}
 
+	// Es preferible reutilizar los métodos creados en vez de recrear la
+	// funcionalidad en cada uno de los métodos sobrecargados. Da menos errores
+	// y facilita la reutilización de código.
 	public void desplazar(Punto punto) {
-		this.x += punto.x;
-		this.y += punto.y;
+		this.desplazar(punto.x, punto.y);
 	}
 
 	public void desplazar(Direccion direccion) {
 		switch (direccion) {
 		case ARRIBA:
-			this.y++;
+			this.desplazar(0, 1);
 			break;
 		case ABAJO:
-			this.y--;
+			this.desplazar(0, -1);
 			break;
 		case DERECHA:
-			this.x++;
+			this.desplazar(1, 0);
 			break;
 		case IZQUIERDA:
-			this.x--;
+			this.desplazar(-1, 0);
 			break;
 		default:
 			break;
+		// esto es inútil puesto que en caso de que no exista el caso no hará
+		// absolutamente nada, lo mismo que este default
 		}
 	}
 
@@ -104,7 +108,9 @@ public class Punto {
 
 	public static Punto mayorDistancia(Punto... puntos) {
 
-		Punto pOrigen = new Punto();
+		// Mejor inicializar el punto como Origen de coordenadas a mano en vez
+		// de tirar del Constructor por defecto. Es más claro y limpio.
+		Punto pOrigen = new Punto(0, 0);
 		Punto pAlejado = puntos[0];
 
 		double maxDistancia = Punto.distancia(pOrigen, pAlejado);

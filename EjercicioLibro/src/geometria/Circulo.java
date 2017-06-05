@@ -6,7 +6,7 @@ public class Circulo {
 	private int radio;
 	private double perimetro;
 
-	private final static Punto COORD_ORIGEN = new Punto();
+	private final static Punto COORD_ORIGEN = new Punto(0, 0);
 	private final static int DEFAULT_RADIO = 5;
 
 	/* CONSTRUCTORES */
@@ -18,15 +18,11 @@ public class Circulo {
 	}
 
 	public Circulo() {
-		this.centro = Circulo.COORD_ORIGEN;
-		this.radio = Circulo.DEFAULT_RADIO;
-		this.perimetro = Circulo.calcularPerimetro(this.radio);
+		this(Circulo.COORD_ORIGEN, Circulo.DEFAULT_RADIO);
 	}
 
 	public Circulo(Circulo circulo) {
-		this.centro = circulo.centro;
-		this.radio = circulo.radio;
-		this.perimetro = circulo.perimetro;
+		this(circulo.centro, circulo.radio);
 	}
 
 	/* METODOS PRIVADOS */
@@ -48,7 +44,7 @@ public class Circulo {
 	public void escalar(int porcentaje) {
 		double escala = porcentaje * 0.01;
 
-		this.radio = (int)(this.radio * escala);
+		this.radio = (int) (this.radio * escala);
 		this.perimetro = Circulo.calcularPerimetro(this.radio);
 	}
 
