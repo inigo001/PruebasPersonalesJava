@@ -29,7 +29,13 @@ public class XMLSaxOstatuMain {
 
 		System.out.println(ostatuak.size());
 
-		System.out.println(ostatuak.get(16).getDescripcion());
+		Municipio municipillo = ostatuak.get(16).getMunicipio();
+
+		ArrayList<Ostatu> ostatuTownList = municipillo.getTownOstatus(ostatuak);
+
+		for (Ostatu ostatu : ostatuTownList) {
+			System.out.println(ostatu);
+		}
 
 	}
 

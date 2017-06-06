@@ -59,8 +59,6 @@ public class XMLSaxOstatuHandler extends DefaultHandler {
 
 			Ostatu ostatuBerria = new Ostatu(ostatuName, ostatuDesc, municipio);
 			XMLSaxOstatuMain.ostatuak.add(ostatuBerria);
-
-			System.out.println(townList.size());
 		}
 	}
 
