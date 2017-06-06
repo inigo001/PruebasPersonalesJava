@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<company>
+	<staff>
+		<firstname>yong</firstname>
+		<lastname>mook kim</lastname>
+		<nickname>mkyong</nickname>
+		<salary>100000</salary>
+	</staff>
+	<staff>
+		<firstname>low</firstname>
+		<lastname>yin fong</lastname>
+		<nickname>fong fong</nickname>
+		<salary>200000</salary>
+	</staff>
+	<staff>
+		<firstname>pepe</firstname>
+		<lastname>miguelez</lastname>
+		<nickname>Arturistico</nickname>
+		<salary>158000</salary>
+	</staff>
+	<staff>
+		<firstname>Roberto</firstname>
+		<lastname>Arturez</lastname>
+		<nickname>robartu</nickname>
+		<salary>178000</salary>
+	</staff>
+	<staff>
+		<firstname>Roberto</firstname>
+		<lastname>Pepez</lastname>
+		<nickname>ruperto</nickname>
+		<salary>128000</salary>
+	</staff>
+</company>
