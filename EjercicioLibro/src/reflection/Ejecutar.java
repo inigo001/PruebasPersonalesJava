@@ -10,7 +10,7 @@ public class Ejecutar {
 		if (args.length >= 3) {
 			// Hacemos el programa
 
-			Class reflectedClass = Class.forName("reflection." + args[0]);
+			Class<?> reflectedClass = Class.forName("reflection." + args[0]);
 
 			if (reflectedClass.getName() == "reflection.Pizarra") {
 

@@ -1,0 +1,37 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="erakunde" type="xs:string"/>
+  <xs:element name="helbidea" type="xs:string"/>
+  <xs:element name="udalerria" type="xs:string"/>
+  <xs:element name="probintzia" type="xs:string"/>
+  <xs:element name="xetrs89" type="xs:float"/>
+  <xs:element name="yetrs89" type="xs:float"/>
+  <xs:element name="kokapena" type="xs:string"/>
+  <xs:element name="seriezenbakia" type="xs:string"/>
+  <xs:element name="modelo" type="xs:string"/>
+  <xs:element name="ordutegia" type="xs:string"/>
+  <xs:element name="row">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="erakunde"/>
+        <xs:element ref="helbidea" minOccurs="0"/>
+        <xs:element ref="udalerria"/>
+        <xs:element ref="probintzia"/>
+        <xs:element ref="xetrs89"/>
+        <xs:element ref="yetrs89"/>
+        <xs:element ref="kokapena" minOccurs="0"/>
+        <xs:element ref="ordutegia" minOccurs="0"/>
+        <xs:element ref="seriezenbakia"/>
+        <xs:element ref="modelo"/>
+      </xs:sequence>
+      <xs:attribute type="xs:short" name="num" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rows">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="row" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute type="xs:short" name="num"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
