@@ -15,9 +15,11 @@ public class XMLSaxOstatuHandler extends DefaultHandler {
 	private boolean townFlag = false;
 	private boolean townCodeFlag = false;
 	private boolean territoryFlag = false;
+	private boolean phoneFlag = false;
 
 	private String ostatuName;
 	private String ostatuDesc;
+	private int[] phoneNumbers;
 
 	private String townName;
 	private int townCode;
@@ -57,7 +59,7 @@ public class XMLSaxOstatuHandler extends DefaultHandler {
 				townList.add(municipio);
 			}
 
-			Ostatu ostatuBerria = new Ostatu(ostatuName, ostatuDesc, municipio);
+			Ostatu ostatuBerria = new Ostatu(ostatuName, ostatuDesc, municipio, phoneNumbers);
 			XMLSaxOstatuMain.ostatuak.add(ostatuBerria);
 		}
 	}
@@ -76,6 +78,36 @@ public class XMLSaxOstatuHandler extends DefaultHandler {
 			townCode = Integer.parseInt(new String(ch, start, length));
 		} else if (territoryFlag) {
 			townTerr += new String(ch, start, length);
+		} else if (phoneFlag) {
+			// Como hay campos con más de un teléfono, escritos cada uno de una
+			// manera diferente y separados igual, hay que hacer todo este rollo
+			// para que quede correctamente alineado.
+
+			// 1. Hay teléfonos con los números juntos (944401122) o con ellos
+			// separados (94 440 1 122), cada uno a su manera.
+			String numbers = (new String(ch, start, length)).replaceAll("\\s+", "");
+			// 2. Cuando hay más de un número, el sistema lo separa con un
+			// guión, o eso en la mayoría de casos.
+			String[] numbersSplit = numbers.split("-");
+			ArrayList<Integer> numberArray = new ArrayList<Integer>();
+
+			// 3. En algún extraño caso los números están separados por líneas
+			// pero algún hueco está vacío. para evitar esto miro si el número
+			// es igual a 9 (la longitud normal de un número) y si es así lo
+			// guardo, si no a hacer puñetas.
+			for (String number : numbersSplit) {
+				if (number.length() == 9) {
+					numberArray.add(Integer.parseInt(number));
+				}
+			}
+
+			// Convierto el arrayList en un array normal. Hay que hacer algunos
+			// cambios puesto que el array es de int mientras que el ArrayList
+			// es de objetos de tipo Integer.
+			phoneNumbers = new int[numberArray.size()];
+			for (int i = 0; i < numberArray.size(); i++) {
+				phoneNumbers[i] = numberArray.get(i);
+			}
 		}
 	}
 
@@ -98,6 +130,9 @@ public class XMLSaxOstatuHandler extends DefaultHandler {
 			break;
 		case "territory":
 			territoryFlag = !territoryFlag;
+			break;
+		case "phonenumber":
+			phoneFlag = !phoneFlag;
 			break;
 		}
 	}
