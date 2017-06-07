@@ -2,8 +2,10 @@ package xmlTestOstatu;
 
 import java.util.ArrayList;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import javax.xml.transform.TransformerException;
 
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -35,6 +37,16 @@ public class XMLSaxOstatuMain {
 
 		for (Ostatu ostatu : ostatuTownList) {
 			System.out.println(ostatu);
+		}
+
+		try {
+			XMLOstatuDomJavaToXML.writeXML(ostatuTownList);
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}

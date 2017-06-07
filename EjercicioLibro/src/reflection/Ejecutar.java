@@ -10,15 +10,18 @@ public class Ejecutar {
 		if (args.length >= 3) {
 			// Hacemos el programa
 
-			System.out.println("test");
-
 			Class reflectedClass = Class.forName("reflection." + args[0]);
 
-			System.out.println(reflectedClass.getName());
+			if (reflectedClass.getName() == "reflection.Pizarra") {
 
-			Method miMethod = reflectedClass.getMethod(args[1], new Class[] { String.class });
+				Object reflectedObject = reflectedClass.newInstance();
 
-			miMethod.invoke(reflectedClass.newInstance(), args[2]);
+				Method miMethod = reflectedClass.getMethod(args[1], new Class[] { String.class });
+
+				if (miMethod != null) {
+					miMethod.invoke(reflectedObject, args[2]);
+				}
+			}
 
 		}
 

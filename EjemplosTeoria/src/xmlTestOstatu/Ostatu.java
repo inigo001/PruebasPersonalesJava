@@ -8,14 +8,16 @@ public class Ostatu {
 	private String descripcion;
 	private int[] telefonos;
 	private Municipio municipio;
+	private Lodging lodging;
 
 	/* CONSTRUCTORES */
 
-	public Ostatu(String nombre, String descripcion, Municipio municipio, int[] telefonos) {
+	public Ostatu(String nombre, String descripcion, Municipio municipio, int[] telefonos, Lodging lodging) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.municipio = municipio;
 		this.telefonos = telefonos;
+		this.lodging = lodging;
 	}
 
 	/* METODOS */
@@ -38,15 +40,23 @@ public class Ostatu {
 		return this.municipio;
 	}
 
+	public String getMunicipioName() {
+		return this.municipio.getName();
+	}
+
 	public int[] getTelefonos() {
 		return this.telefonos.clone();
+	}
+
+	public Lodging getLodging() {
+		return this.lodging;
 	}
 
 	/* PROPIAS */
 
 	public String toString() {
 		return "Nombre: " + this.nombre + " <-> Descripcion: " + this.descripcion.substring(0, 60)
-				+ "... <-> Municipio: " + this.municipio + " <-> Teléfono: " + this.getStringTelefonos();
+				+ "... <-> Municipio: " + this.municipio + " <-> Teléfono: " + this.getStringTelefonos() + " <-> LodgingId: " + this.lodging.getName();
 	}
 
 }

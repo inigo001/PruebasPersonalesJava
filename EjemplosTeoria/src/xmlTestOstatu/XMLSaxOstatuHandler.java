@@ -16,16 +16,19 @@ public class XMLSaxOstatuHandler extends DefaultHandler {
 	private boolean townCodeFlag = false;
 	private boolean territoryFlag = false;
 	private boolean phoneFlag = false;
+	private boolean lodgingFlag = false;
 
 	private String ostatuName;
 	private String ostatuDesc;
 	private int[] phoneNumbers;
+	private String ostatuLodging;
 
 	private String townName;
 	private int townCode;
 	private String townTerr;
 
 	private ArrayList<Municipio> townList = new ArrayList<Municipio>();
+	private ArrayList<Lodging> lodgingList = new ArrayList<Lodging>();
 
 	//
 
@@ -37,6 +40,7 @@ public class XMLSaxOstatuHandler extends DefaultHandler {
 			ostatuDesc = "";
 			townName = "";
 			townTerr = "";
+			ostatuLodging = "";
 		}
 
 	}
@@ -53,13 +57,25 @@ public class XMLSaxOstatuHandler extends DefaultHandler {
 					if (townList.get(i).equals(municipio)) {
 						municipio = townList.get(i);
 					}
-
 				}
 			} else {
 				townList.add(municipio);
 			}
 
-			Ostatu ostatuBerria = new Ostatu(ostatuName, ostatuDesc, municipio, phoneNumbers);
+			Lodging lodging = new Lodging(ostatuLodging);
+
+			if (lodgingList.contains(lodging)) {
+				for (int i = 0; i < lodgingList.size(); i++) {
+					if (lodgingList.get(i).equals(lodging)) {
+						lodging = lodgingList.get(i);
+					}
+				}
+			} else {
+				lodgingList.add(lodging);
+				lodging.anadirId();
+			}
+
+			Ostatu ostatuBerria = new Ostatu(ostatuName, ostatuDesc, municipio, phoneNumbers, lodging);
 			XMLSaxOstatuMain.ostatuak.add(ostatuBerria);
 		}
 	}
@@ -108,6 +124,8 @@ public class XMLSaxOstatuHandler extends DefaultHandler {
 			for (int i = 0; i < numberArray.size(); i++) {
 				phoneNumbers[i] = numberArray.get(i);
 			}
+		} else if (lodgingFlag) {
+			ostatuLodging += new String(ch, start, length);
 		}
 	}
 
@@ -133,6 +151,9 @@ public class XMLSaxOstatuHandler extends DefaultHandler {
 			break;
 		case "phonenumber":
 			phoneFlag = !phoneFlag;
+			break;
+		case "lodgingtype":
+			lodgingFlag = !lodgingFlag;
 			break;
 		}
 	}
