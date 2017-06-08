@@ -1,0 +1,31 @@
+Cómo crear con XJC las clases desde un xsd de manera automática:
+
+https://www.thoughts-on-java.org/generate-your-jaxb-classes-in-second/
+
+
+Un .xsd es un fichero que marca el formato que ha de tener un fichero XML. Si el fichero XML cumple con lo que indica el fichero XSD tenemos como resultado un fichero VÁLIDO. Un fichero NO VÁLIDO puede tener una ESTRUCTURA CORRECTA pero no cumplir lo que su .xsd indica.
+
+Para crear un fichero xsd a partir de un xml podemos utilizar herramientas online:
+
+https://www.freeformatter.com/xsd-generator.html
+
+Aunque probablemente haya muchas más.
+_______________________________________________
+
+Cómo crear las clases a partir de un fichero XSD. Ejecutamos el siguiente comando desde la carpeta del PROYECTO JAVA (no workspace)
+
+xjc -d src -p blog.thoughts.on.java schema.xsd
+
+xjc      
+    Comando de xjc, el programa que usaremos para crear las clases. Como no lo tenemos en la raíz, la línea de comandos no lo encontrará y tendremos que escribirlo desde su ruta normal. Suele estar en la siguiente ruta.
+    
+    C:\Program Files\Java\jdk1.8.0_121\bin\xjc.exe
+
+-d src
+    La carpeta a la que irán nuestras clases. En principio todo el contenido en clases de nuestro proyecto va a la carpeta src, así que mantenemos ésta.
+
+-p blog.thoughts.on.java
+    El paquete al que pertenecerán las clases que vayamos a crear. También creará dentro de src la estructura de carpetas correspondiente a este paquete.
+
+schema.xsd
+    El fichero xsd que vamos a utilizar para estructurar nuestras clases.
