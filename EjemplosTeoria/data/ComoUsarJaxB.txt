@@ -29,3 +29,5 @@ xjc
 
 schema.xsd
     El fichero xsd que vamos a utilizar para estructurar nuestras clases.
+
+En este caso he utilizado el siguiente comando para crear las clases del xml "desfibriladoreak.xml", después de haber creado su .xsd. Es un XML muy mal configurado, pero bueno, para muestra nos servirá.

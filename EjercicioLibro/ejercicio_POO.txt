@@ -1,0 +1,90 @@
+-------------
+-------------
+EJERCICIO POO
+-------------
+-------------
+
+
+Crear un paquete empresa, y en él las siguientes clases:
+
+-----------------------------------------
+Dni: representa un dni
+-----------------------------------------
+1. Tiene como propiedades numero (entero) y letra (char). No existen métodos get y set para su obtención y establecimiento, pero sí existe uno que devuelve la cadena del String.
+2. Tiene un contructor al que se le pasa el número y la letra.
+
+-----------------------------------------
+Persona: representa una persona. Es una clase abstracta.
+-----------------------------------------
+1. Tiene como propiedades nombre (String), apellido (String), edad (int) y dni (Dni). Existen métodos get y set para su obtención y establecimiento.
+2. Tiene 2 constructores: 
+- Constructor con los tres parámetros.
+- Constructor por defecto: sin parámetros.
+3. Tiene un método toString(), redefinición del de Object, que devuelve el contenido del objeto en forma de cadena de caracteres.
+
+-----------------------------------------
+Empleado: representa un empleado. Es una clase abstracta. Extiende a Persona.
+-----------------------------------------
+1. Añade como propiedad el codEmpleado (entero). Existe método get para su obtención. Tiene también una variable de clase numEmpleados que da el código de empleado cada vez que se crea una instancia. Se inicializa a cero y cada vez que se crea una instancia se incrementa. También añade como propiedad el sueldo (real).
+2. Tiene 2 constructores: 
+- Constructor con los 3 parámetros del de Persona más el añadido del sueldo.
+- Constructor por defecto: sin parámetros.
+3. Redefine el método toString().
+4. Tiene los métodos trabajar(), un método abstracto, y obtenerSueldo(), que devuelve el sueldo.
+
+-----------------------------------------
+ManejadorOrdenador: representa alguien que maneja un ordenador. Es una interface.
+-----------------------------------------
+1. Define el método teclear().
+
+-----------------------------------------
+Arreglador: representa alguien que arregla. Es una interface.
+-----------------------------------------
+1. Define el método arreglar().
+
+-----------------------------------------
+Administrativo: representa un administrativo. Extiende a Empleado. Implementa la Interface ManejadorOrdenador.
+-----------------------------------------
+1. No añade propiedades.
+2. Tiene 2 constructores: 
+- Constructor con los 4 parámetros del de Empleado.
+- Constructor por defecto: sin parámetros.
+3.- Implementación del método trabajar(): teclear().
+
+-----------------------------------------
+Tecnico: representa un técnico. Extiende a Empleado. Implementa la Interface Arreglador.
+-----------------------------------------
+1. No añade propiedades.
+2. Tiene 2 constructores: 
+- Constructor con los 4 parámetros del de Empleado.
+- Constructor por defecto: sin parámetros.
+3.- Implementación del método trabajar(): arreglar().
+
+-----------------------------------------
+Ingeniero: representa un ingeniero. Extiende a Empleado. Implementa las Interfaces ManejadorOrdenador y Arreglador.
+-----------------------------------------
+1. No añade propiedades.
+2. Tiene 2 constructores: 
+- Constructor con los 4 parámetros del de Empleado.
+- Constructor por defecto: sin parámetros.
+3. Implementación del método trabajar(): arreglar() y teclear().
+4. El método obtenerSueldo() se ve incrementado entre el 0% y el 20%. Usa un número aleatorio, para ello usa java.util.Random del api de Java.
+5. El método disenyar().
+
+-----------------------------------------
+GestionTrabajo: es una clase de utilidades.
+-----------------------------------------
+1. Tiene un método de utilidad tratarEmpleado(), con un parámetro de clase Empleado. Este método imprime en pantalla si es un Administrativo, Tecnico o Ingeniero, después llama a trabajar() y, si es Ingeniero, también a disenyar().
+
+-----------------------------------------
+Test: tiene el main
+-----------------------------------------
+1. Se crea un administrativo y llama a trabajar().
+2. Se crea un técnico y llama a trabajar().
+3. Se crea un ingeniero y llama a trabajar().
+4. Del administrativo llama a obtenerSueldo().
+5. Del técnico llama a obtenerSueldo().
+6. Del ingeniero llama a obtenerSueldo().
+7. Llama a tratarEmpleado() de GestionTrabajo pasándole el administrativo.
+8. Llama a tratarEmpleado() de GestionTrabajo pasándole el técnico.
+9. Llama a tratarEmpleado() de GestionTrabajo pasándole el ingeniero.
