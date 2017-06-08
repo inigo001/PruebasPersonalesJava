@@ -1,5 +1,7 @@
 package xmlTestOstatu;
 
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -17,21 +19,11 @@ public class XMLSaxOstatuMain {
 
 		ostatuak = new ArrayList<Ostatu>();
 
-		try {
-
-			SAXParserFactory factory = SAXParserFactory.newInstance();
-			SAXParser saxParser = factory.newSAXParser();
-			DefaultHandler handler = new XMLSaxOstatuHandler();
-
-			saxParser.parse("data/ostatuak.xml", handler);
-
-		} catch (Exception e) {
-			System.out.println("ERROR: " + e);
-		}
+		XMLSaxOstatuMain.createArrayWeb(ostatuak);
 
 		System.out.println(ostatuak.size());
 
-		Municipio municipillo = ostatuak.get(16).getMunicipio();
+		Municipio municipillo = ostatuak.get(14).getMunicipio();
 
 		ArrayList<Ostatu> ostatuTownList = municipillo.getTownOstatus(ostatuak);
 
@@ -47,6 +39,44 @@ public class XMLSaxOstatuMain {
 		} catch (TransformerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+
+	}
+
+	private static void createArrayLocal(ArrayList<Ostatu> ostatuak) {
+
+		try {
+
+			SAXParserFactory factory = SAXParserFactory.newInstance();
+			SAXParser saxParser = factory.newSAXParser();
+			DefaultHandler handler = new XMLSaxOstatuHandler();
+
+			saxParser.parse("data/ostatuak.xml", handler);
+
+		} catch (Exception e) {
+			System.out.println("ERROR: " + e);
+		}
+
+	}
+
+	private static void createArrayWeb(ArrayList<Ostatu> ostatuak) {
+
+		try {
+
+			URL ostatuURL = new URL(
+					"http://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/alojamiento_de_euskadi/opendata/ostatuak.xml");
+
+			URLConnection connection = ostatuURL.openConnection();
+			System.out.println("Fecha de modificación: " + connection.getHeaderField("Last-Modified"));
+
+			SAXParserFactory factory = SAXParserFactory.newInstance();
+			SAXParser saxParser = factory.newSAXParser();
+			DefaultHandler handler = new XMLSaxOstatuHandler();
+
+			saxParser.parse(connection.getInputStream(), handler);
+
+		} catch (Exception e) {
+			System.out.println("ERROR: " + e);
 		}
 
 	}
