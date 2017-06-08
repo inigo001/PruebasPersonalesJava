@@ -43,8 +43,8 @@ public abstract class Empleado extends Persona {
 	 * empleados en 1
 	 */
 	private void anadirCodigoEmpleado() {
-		this.codEmpleado = Empleado.numEmpleados;
 		Empleado.numEmpleados++;
+		this.codEmpleado = Empleado.numEmpleados;
 	}
 
 	/* METODOS */

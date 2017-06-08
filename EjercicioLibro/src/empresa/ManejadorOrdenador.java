@@ -7,7 +7,7 @@ package empresa;
  * @author inigo001
  *
  */
-public interface ManejadorOrdenador {
+public abstract interface ManejadorOrdenador {
 
 	public abstract void teclear();
 }
