@@ -10,17 +10,27 @@ public class Ejecutar {
 		if (args.length >= 3) {
 			// Hacemos el programa
 
-			Class<?> reflectedClass = Class.forName("reflection." + args[0]);
-
-			if (reflectedClass.getName() == "reflection.Pizarra") {
+			try {
+				Class<?> reflectedClass = Class.forName("reflection." + args[0]);
 
 				Object reflectedObject = reflectedClass.newInstance();
 
-				Method miMethod = reflectedClass.getMethod(args[1], new Class[] { String.class });
+				if (reflectedObject instanceof Pizarra) {
 
-				if (miMethod != null) {
-					miMethod.invoke(reflectedObject, args[2]);
+					Method miMethod = reflectedClass.getMethod(args[1], new Class[] { String.class });
+
+					if (miMethod != null) {
+						miMethod.invoke(reflectedObject, args[2]);
+					}
+
+				} else {
+					System.out.println("¡¡¡¡LA CLASE " + args[0] + " EXISTE, PERO TIENE QUE SER PIZARRA!!!!");
 				}
+
+			} catch (ClassNotFoundException e) {
+				System.out.println("LA CLASE " + args[0] + " NO EXISTE MENDRUGO");
+			} catch (NoSuchMethodException | SecurityException e) {
+				System.out.println("PROBLEMAS CON EL MÉTODO");
 			}
 
 		}
