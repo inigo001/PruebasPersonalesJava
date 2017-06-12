@@ -15,14 +15,14 @@ public class ImageSecondMain {
 		BufferedImage imagen = null;
 
 		try {
-			imagen = ImageIO.read(new File("data/bolaDePlaya.jpg"));
+			imagen = ImageIO.read(new File("data/minimagen2.jpg"));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
 
 		// ImageSecondMain.blackWhiteImage(imagen);
-
-		ImageSecondMain.createNewImage(imagen);
+		// ImageSecondMain.createNewImage(imagen);
+		ImageSecondMain.invertirColores(imagen);
 
 		try {
 			File outputfile = new File("write/mi_imagen.png");
@@ -184,6 +184,21 @@ public class ImageSecondMain {
 		}
 	}
 
+	protected static void invertirColores(BufferedImage imagen) {
+		for (int i = 0; i < imagen.getWidth(); i++) {
+			for (int j = 0; j < imagen.getHeight(); j++) {
+
+				Color imageColor = new Color(imagen.getRGB(i, j));
+
+				Color newColor = new Color(255 - imageColor.getRed(), 255 - imageColor.getGreen(),
+						255 - imageColor.getBlue());
+
+				imagen.setRGB(i, j, newColor.getRGB());
+
+			}
+		}
+	}
+
 	private static boolean comprobarVecinos(int x, int y, BufferedImage imagen) {
 
 		final int COLOR_LENGTH = 1;
@@ -216,7 +231,7 @@ public class ImageSecondMain {
 	}
 
 	private static boolean checkClass(Color oldColor, Color newColor) {
-		final int COLOR_RANGE = 25;
+		final int COLOR_RANGE = 13;
 
 		boolean redClass = (oldColor.getRed() + COLOR_RANGE > newColor.getRed()
 				&& oldColor.getRed() - COLOR_RANGE < newColor.getRed());
