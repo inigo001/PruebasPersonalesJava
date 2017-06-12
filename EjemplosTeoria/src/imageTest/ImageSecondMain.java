@@ -15,14 +15,14 @@ public class ImageSecondMain {
 		BufferedImage imagen = null;
 
 		try {
-			imagen = ImageIO.read(new File("data/minimagen2.jpg"));
+			imagen = ImageIO.read(new File("data/bolaDePlaya.jpg"));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
 
 		// ImageSecondMain.blackWhiteImage(imagen);
 
-		ImageSecondMain.blackWhiteImage(imagen);
+		ImageSecondMain.createNewImage(imagen);
 
 		try {
 			File outputfile = new File("write/mi_imagen.png");
@@ -33,7 +33,7 @@ public class ImageSecondMain {
 
 	}
 
-	private static void blackWhiteImage(BufferedImage imagen) {
+	protected static void blackWhiteImage(BufferedImage imagen) {
 
 		for (int i = 0; i < imagen.getWidth(); i++) {
 			for (int j = 0; j < imagen.getHeight(); j++) {
@@ -50,7 +50,7 @@ public class ImageSecondMain {
 		}
 	}
 
-	private static void mainColor(BufferedImage imagen) {
+	protected static void mainColor(BufferedImage imagen) {
 
 		for (int i = 0; i < imagen.getWidth(); i++) {
 			for (int j = 0; j < imagen.getHeight(); j++) {
@@ -77,7 +77,7 @@ public class ImageSecondMain {
 
 	}
 
-	private static void changeColors(BufferedImage imagen) {
+	protected static void changeColors(BufferedImage imagen) {
 		for (int i = 0; i < imagen.getWidth(); i++) {
 			for (int j = 0; j < imagen.getHeight(); j++) {
 
@@ -91,7 +91,7 @@ public class ImageSecondMain {
 		}
 	}
 
-	private static void blackOrWhite(BufferedImage imagen) {
+	protected static void blackOrWhite(BufferedImage imagen) {
 
 		ImageSecondMain.blackWhiteImage(imagen);
 
@@ -115,7 +115,7 @@ public class ImageSecondMain {
 
 	}
 
-	private static void createNewImage(BufferedImage imagen) {
+	protected static void createNewImage(BufferedImage imagen) {
 
 		BufferedImage nuevaImagen = new BufferedImage(imagen.getWidth(), imagen.getHeight(),
 				BufferedImage.TYPE_INT_RGB);
@@ -123,23 +123,95 @@ public class ImageSecondMain {
 		for (int i = 0; i < imagen.getWidth(); i++) {
 			for (int j = 0; j < imagen.getHeight(); j++) {
 
+				Color nuevoColor;
+
+				if (comprobarVecinos(i, j, imagen)) {
+					nuevoColor = new Color(255, 255, 255);
+				} else {
+					nuevoColor = new Color(0, 0, 0);
+				}
+
+				nuevaImagen.setRGB(i, j, nuevoColor.getRGB());
+
 			}
+		}
+
+		try {
+			File outputfile = new File("write/otra_prueba.png");
+			ImageIO.write(nuevaImagen, "png", outputfile);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 	}
 
+	protected static void redChannel(BufferedImage imagen) {
+		for (int i = 0; i < imagen.getWidth(); i++) {
+			for (int j = 0; j < imagen.getHeight(); j++) {
+
+				Color imageColor = new Color(imagen.getRGB(i, j));
+
+				Color newColor = new Color(imageColor.getRed(), 0, 0);
+
+				imagen.setRGB(i, j, newColor.getRGB());
+
+			}
+		}
+	}
+
+	protected static void multiChannel(BufferedImage imagen) {
+		for (int i = 0; i < imagen.getWidth(); i++) {
+			for (int j = 0; j < imagen.getHeight(); j++) {
+
+				Color imageColor = new Color(imagen.getRGB(i, j));
+
+				Color newColor;
+
+				if (imageColor.getRed() > imageColor.getBlue() && imageColor.getRed() > imageColor.getGreen()) {
+					newColor = new Color(imageColor.getRed(), 0, 0);
+				} else if (imageColor.getGreen() > imageColor.getBlue()
+						&& imageColor.getGreen() > imageColor.getRed()) {
+					newColor = new Color(0, imageColor.getGreen(), 0);
+				} else if (imageColor.getBlue() > imageColor.getRed() && imageColor.getBlue() > imageColor.getGreen()) {
+					newColor = new Color(0, 0, imageColor.getBlue());
+				} else {
+					newColor = imageColor;
+				}
+
+				imagen.setRGB(i, j, newColor.getRGB());
+
+			}
+		}
+	}
+
 	private static boolean comprobarVecinos(int x, int y, BufferedImage imagen) {
+
+		final int COLOR_LENGTH = 1;
 
 		Color imageColor = new Color(imagen.getRGB(x, y));
 
-		// Color SI
-		int newX = x - 1;
-		int newY = y - 1;
+		boolean noClash = true;
 
-		if (newX >= 0 && newY >= 0) {
-			Color newColor = new Color(imagen.getRGB(newX, newY));
+		for (int newX = x - COLOR_LENGTH; (newX <= x + COLOR_LENGTH) && (noClash); newX++) {
+
+			if (newX >= 0 && newX < imagen.getWidth()) {
+
+				for (int newY = y - COLOR_LENGTH; (newY <= y + COLOR_LENGTH) && (noClash); newY++) {
+
+					if (newY >= 0 && newY < imagen.getHeight()) {
+
+						Color newColor = new Color(imagen.getRGB(newX, newY));
+						noClash = (checkClass(imageColor, newColor));
+
+					}
+
+				}
+
+			}
 
 		}
+
+		return noClash;
 
 	}
 
