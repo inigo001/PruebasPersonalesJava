@@ -115,4 +115,47 @@ public class ImageSecondMain {
 
 	}
 
+	private static void createNewImage(BufferedImage imagen) {
+
+		BufferedImage nuevaImagen = new BufferedImage(imagen.getWidth(), imagen.getHeight(),
+				BufferedImage.TYPE_INT_RGB);
+
+		for (int i = 0; i < imagen.getWidth(); i++) {
+			for (int j = 0; j < imagen.getHeight(); j++) {
+
+			}
+		}
+
+	}
+
+	private static boolean comprobarVecinos(int x, int y, BufferedImage imagen) {
+
+		Color imageColor = new Color(imagen.getRGB(x, y));
+
+		// Color SI
+		int newX = x - 1;
+		int newY = y - 1;
+
+		if (newX >= 0 && newY >= 0) {
+			Color newColor = new Color(imagen.getRGB(newX, newY));
+
+		}
+
+	}
+
+	private static boolean checkClass(Color oldColor, Color newColor) {
+		final int COLOR_RANGE = 25;
+
+		boolean redClass = (oldColor.getRed() + COLOR_RANGE > newColor.getRed()
+				&& oldColor.getRed() - COLOR_RANGE < newColor.getRed());
+
+		boolean greenClass = (oldColor.getGreen() + COLOR_RANGE > newColor.getGreen()
+				&& oldColor.getGreen() - COLOR_RANGE < newColor.getGreen());
+
+		boolean blueClass = (oldColor.getBlue() + COLOR_RANGE > newColor.getBlue()
+				&& oldColor.getBlue() - COLOR_RANGE < newColor.getBlue());
+
+		return (redClass && greenClass && blueClass);
+	}
+
 }
