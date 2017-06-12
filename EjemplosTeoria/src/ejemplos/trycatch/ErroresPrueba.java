@@ -12,12 +12,12 @@ public class ErroresPrueba {
 		String cadena = null;
 
 		int i = 21;
-		
+
 		try {
-			
+
 			i++;
 			System.out.println(i);
-			
+
 			String url = "url";
 			String user = "user";
 			String password = "password";
@@ -25,14 +25,16 @@ public class ErroresPrueba {
 			Connection conexion = DriverManager.getConnection(url, user, password);
 
 			Statement stmt = conexion.createStatement();
-			
+
 			conexion.close();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("AQUÍ HA HABIDO UN ERROR");
+		} finally {
+			System.out.println("siempre lo escribiré");
 		}
-		
+
 		System.out.println(i);
 
 	}

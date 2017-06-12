@@ -30,7 +30,7 @@ public class Maquina {
 		Fruta[] frutas = Fruta.values();
 
 		for (int i = 0; i < this.combinacion.length; i++) {
-			int index = generador.nextInt(5);
+			int index = generador.nextInt(Fruta.values().length);
 			this.combinacion[i] = frutas[index];
 		}
 	}
