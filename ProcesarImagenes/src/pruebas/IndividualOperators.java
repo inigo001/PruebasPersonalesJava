@@ -9,6 +9,8 @@ public class IndividualOperators {
 
 	}
 
+	// Imagen en escala de grises
+
 	public static BufferedImage greyScale(BufferedImage image) {
 
 		BufferedImage greyScaleImage = Tools.copyBufferedImage(image);
@@ -25,6 +27,8 @@ public class IndividualOperators {
 
 		return greyScaleImage;
 	}
+
+	// Negativo de la imagen
 
 	public static BufferedImage imageNegative(BufferedImage image) {
 
@@ -45,8 +49,26 @@ public class IndividualOperators {
 		return negativeImage;
 	}
 
-	public static BufferedImage imageUmbral(BufferedImage image, int umbral) {
+	// Imagen en blanco y negro con en base a un color. Lo hace en base a una
+	// imagen en escala de grises que crea antes.
 
+	public static BufferedImage imageUmbral(BufferedImage image, int umbral) {
+		return IndividualOperators.umbral(image, umbral, umbral, false);
+	}
+
+	public static BufferedImage imageInvertedUmbral(BufferedImage image, int umbral) {
+		return IndividualOperators.umbral(image, umbral, umbral, true);
+	}
+
+	public static BufferedImage imageBinaryUmbral(BufferedImage image, int lowerLimit, int upperLimit) {
+		return IndividualOperators.umbral(image, lowerLimit, upperLimit, false);
+	}
+	
+	public static BufferedImage imageInvertedBinaryUmbral(BufferedImage image, int lowerLimit, int upperLimit) {
+		return IndividualOperators.umbral(image, lowerLimit, upperLimit, true);
+	}
+
+	private static BufferedImage umbral(BufferedImage image, int umbralDown, int umbralUp, boolean inverted) {
 		BufferedImage umbralImage = IndividualOperators.greyScale(image);
 
 		for (int i = 0; i < umbralImage.getWidth(); i++) {
@@ -54,10 +76,12 @@ public class IndividualOperators {
 
 				Color imageColor = new Color(umbralImage.getRGB(i, j));
 
-				if (imageColor.getRed() > umbral) {
-					imageColor = new Color(255, 255, 255);
+				if (imageColor.getRed() > umbralUp) {
+					imageColor = (!inverted) ? new Color(255, 255, 255) : new Color(0, 0, 0);
+				} else if (imageColor.getRed() < umbralDown && !(umbralUp <= umbralDown)) {
+					imageColor = (!inverted) ? new Color(255, 255, 255) : new Color(0, 0, 0);
 				} else {
-					imageColor = new Color(0, 0, 0);
+					imageColor = (inverted) ? new Color(255, 255, 255) : new Color(0, 0, 0);
 				}
 
 				umbralImage.setRGB(i, j, imageColor.getRGB());
@@ -66,7 +90,6 @@ public class IndividualOperators {
 		}
 
 		return umbralImage;
-
 	}
 
 }

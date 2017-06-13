@@ -10,7 +10,7 @@ public class Ejecutar {
 
 	private static final String IMAGE_ROUTE = "data/testImages/";
 	private static final String WRITE_ROUTE = "write/testResult/";
-	private static String imageName = "gato_3.jpg";
+	private static String imageName = "gato_2.jpg";
 
 	public static void main(String[] args) {
 
@@ -27,6 +27,7 @@ public class Ejecutar {
 
 			// Transformaciones de la imagen
 			Ejecutar.buildOperators(path, image);
+
 
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
@@ -84,6 +85,21 @@ public class Ejecutar {
 		// Histograma de Iluminación (Grises)
 		newImage = IndividualOperators.imageUmbral(image, 100);
 		outputfile = new File(path.getPath() + "/op3-umbral.png");
+		ImageIO.write(newImage, "png", outputfile);
+
+		// Histograma de Iluminación (Grises)
+		newImage = IndividualOperators.imageInvertedUmbral(image, 100);
+		outputfile = new File(path.getPath() + "/op4-invertedUmbral.png");
+		ImageIO.write(newImage, "png", outputfile);
+
+		// Histograma de Iluminación (Grises)
+		newImage = IndividualOperators.imageBinaryUmbral(image, 90, 130);
+		outputfile = new File(path.getPath() + "/op5-binaryUmbral.png");
+		ImageIO.write(newImage, "png", outputfile);
+
+		// Histograma de Iluminación (Grises)
+		newImage = IndividualOperators.imageInvertedBinaryUmbral(image, 90, 130);
+		outputfile = new File(path.getPath() + "/op6-invertedBinaryUmbral.png");
 		ImageIO.write(newImage, "png", outputfile);
 
 	}
