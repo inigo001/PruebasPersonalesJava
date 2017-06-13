@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 
 import javax.imageio.ImageIO;
 
@@ -15,14 +14,14 @@ public class ImageSecondMain {
 		BufferedImage imagen = null;
 
 		try {
-			imagen = ImageIO.read(new File("data/minimagen2.jpg"));
+			imagen = ImageIO.read(new File("data/bolaDePlaya.jpg"));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
 
-		// ImageSecondMain.blackWhiteImage(imagen);
-		// ImageSecondMain.createNewImage(imagen);
-		ImageSecondMain.invertirColores(imagen);
+		// ImageSecondMain.mainColor(imagen);
+		ImageSecondMain.createNewImage(imagen);
+		//ImageSecondMain.invertirColores(imagen);
 
 		try {
 			File outputfile = new File("write/mi_imagen.png");
