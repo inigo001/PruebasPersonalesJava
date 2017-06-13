@@ -1,4 +1,4 @@
-package coleccionescolecciones;
+package colecciones.colecciones;
 
 public class ContenedorClasico {
 	Object variable1;

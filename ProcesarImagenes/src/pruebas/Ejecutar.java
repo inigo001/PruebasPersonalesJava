@@ -82,7 +82,7 @@ public class Ejecutar {
 		ImageIO.write(newImage, "png", outputfile);
 
 		// Histograma de Iluminación (Grises)
-		newImage = IndividualOperators.imageUmbral(image, 200);
+		newImage = IndividualOperators.imageUmbral(image, 100);
 		outputfile = new File(path.getPath() + "/op3-umbral.png");
 		ImageIO.write(newImage, "png", outputfile);
 
