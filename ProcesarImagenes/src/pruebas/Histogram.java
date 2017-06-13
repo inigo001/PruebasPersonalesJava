@@ -1,7 +1,6 @@
 package pruebas;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 public class Histogram {
@@ -32,9 +31,14 @@ public class Histogram {
 				case BLUE:
 					pixelBrightness = pixelColor.getBlue();
 					break;
+				case LUMINANCE:
+					pixelBrightness = (int) ((pixelColor.getRed() * 0.2125 + pixelColor.getGreen() * 0.7154
+							+ pixelColor.getBlue() * 0.0721));
+					break;
 				case BRIGHTNESS:
 				default:
 					pixelBrightness = (int) ((pixelColor.getRed() + pixelColor.getGreen() + pixelColor.getBlue()) / 3);
+					break;
 				}
 
 				brightnessList[pixelBrightness] = brightnessList[pixelBrightness] + 1;
