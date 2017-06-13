@@ -12,7 +12,7 @@ public class Histogram {
 		this.image = image;
 	}
 
-	public int[] brightness() {
+	public int[] getColorArray(Channel channel) {
 
 		int[] brightnessList = new int[256];
 
@@ -20,7 +20,22 @@ public class Histogram {
 			for (int j = 0; j < this.image.getHeight(); j++) {
 
 				Color pixelColor = new Color(this.image.getRGB(i, j));
-				int pixelBrightness = (int) ((pixelColor.getRed() + pixelColor.getGreen() + pixelColor.getBlue()) / 3);
+				int pixelBrightness;
+
+				switch (channel) {
+				case RED:
+					pixelBrightness = pixelColor.getRed();
+					break;
+				case GREEN:
+					pixelBrightness = pixelColor.getGreen();
+					break;
+				case BLUE:
+					pixelBrightness = pixelColor.getBlue();
+					break;
+				case BRIGHTNESS:
+				default:
+					pixelBrightness = (int) ((pixelColor.getRed() + pixelColor.getGreen() + pixelColor.getBlue()) / 3);
+				}
 
 				brightnessList[pixelBrightness] = brightnessList[pixelBrightness] + 1;
 
@@ -31,15 +46,19 @@ public class Histogram {
 
 	}
 
-	public BufferedImage brightnessImage() {
-		return this.brightnessImage(800, 3);
+	public BufferedImage getHistoImage() {
+		return this.getHistoImage(Channel.BRIGHTNESS, 800, 3);
 	}
 
-	public BufferedImage brightnessImage(int height, int widthMultiplier) {
+	public BufferedImage getHistoImage(Channel channel) {
+		return this.getHistoImage(channel, 800, 3);
+	}
+
+	public BufferedImage getHistoImage(Channel channel, int height, int widthMultiplier) {
 
 		final int IMAGE_PIXEL_WIDTH = 256;
 
-		int[] brightness = this.brightness();
+		int[] brightness = this.getColorArray(channel);
 
 		int maxBrightness = 0;
 
@@ -48,8 +67,6 @@ public class Histogram {
 		}
 
 		double heightMultiplier = ((double) height / maxBrightness);
-
-		System.out.println(heightMultiplier);
 
 		BufferedImage histoImage = new BufferedImage(IMAGE_PIXEL_WIDTH * widthMultiplier, height,
 				BufferedImage.TYPE_INT_RGB);
@@ -61,7 +78,7 @@ public class Histogram {
 					- (brightness[i] * heightMultiplier)); j--) {
 
 				for (int k = 0; k < widthMultiplier; k++) {
-					histoImage.setRGB((i * widthMultiplier) + k, j, (new Color(127, 127, 127)).getRGB());
+					histoImage.setRGB((i * widthMultiplier) + k, j, channel.getColor().getRGB());
 				}
 
 			}
