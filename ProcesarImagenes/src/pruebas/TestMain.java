@@ -1,9 +1,7 @@
 package pruebas;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -11,7 +9,6 @@ import javax.imageio.ImageIO;
 
 public class TestMain {
 
-	private static final String IMAGE_ROUTE = "data/testImages/";
 	private static final String WRITE_ROUTE = "write/test/";
 
 	public static void main(String[] args) {
