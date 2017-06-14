@@ -63,7 +63,7 @@ public class IndividualOperators {
 	public static BufferedImage imageBinaryUmbral(BufferedImage image, int lowerLimit, int upperLimit) {
 		return IndividualOperators.umbral(image, lowerLimit, upperLimit, false);
 	}
-	
+
 	public static BufferedImage imageInvertedBinaryUmbral(BufferedImage image, int lowerLimit, int upperLimit) {
 		return IndividualOperators.umbral(image, lowerLimit, upperLimit, true);
 	}
@@ -82,6 +82,79 @@ public class IndividualOperators {
 					imageColor = (!inverted) ? new Color(255, 255, 255) : new Color(0, 0, 0);
 				} else {
 					imageColor = (inverted) ? new Color(255, 255, 255) : new Color(0, 0, 0);
+				}
+
+				umbralImage.setRGB(i, j, imageColor.getRGB());
+
+			}
+		}
+
+		return umbralImage;
+	}
+
+	// Umbral en escala de grises
+
+	public static BufferedImage greyImageUmbral(BufferedImage image, int lowerLimit, int upperLimit) {
+		return IndividualOperators.greyUmbral(image, lowerLimit, upperLimit, false);
+	}
+
+	public static BufferedImage invertedGreyImageUmbral(BufferedImage image, int lowerLimit, int upperLimit) {
+		return IndividualOperators.greyUmbral(image, lowerLimit, upperLimit, true);
+	}
+
+	private static BufferedImage greyUmbral(BufferedImage image, int umbralDown, int umbralUp, boolean inverted) {
+
+		BufferedImage umbralImage = IndividualOperators.greyScale(image);
+
+		for (int i = 0; i < umbralImage.getWidth(); i++) {
+			for (int j = 0; j < umbralImage.getHeight(); j++) {
+
+				Color imageColor = new Color(umbralImage.getRGB(i, j));
+
+				if (imageColor.getRed() > umbralUp) {
+					imageColor = new Color(255, 255, 255);
+				} else if (imageColor.getRed() < umbralDown && !(umbralUp <= umbralDown)) {
+					imageColor = new Color(255, 255, 255);
+				} else if (inverted) {
+					imageColor = new Color(255 - imageColor.getRed(), 255 - imageColor.getGreen(),
+							255 - imageColor.getBlue());
+				}
+
+				umbralImage.setRGB(i, j, imageColor.getRGB());
+
+			}
+		}
+
+		return umbralImage;
+	}
+
+	// Umbral escala de grises color completo
+
+	public static BufferedImage extensionUmbral(BufferedImage image, int lowerLimit, int upperLimit) {
+		return IndividualOperators.extension(image, lowerLimit, upperLimit, false);
+	}
+
+	private static BufferedImage invertedExtensionUmbral(BufferedImage image, int lowerLimit, int upperLimit) {
+		return IndividualOperators.extension(image, lowerLimit, upperLimit, true);
+	}
+
+	private static BufferedImage extension(BufferedImage image, int umbralDown, int umbralUp, boolean inverted) {
+
+		BufferedImage umbralImage = (!inverted) ? IndividualOperators.greyImageUmbral(image, umbralDown, umbralUp)
+				: IndividualOperators.invertedGreyImageUmbral(image, umbralDown, umbralUp);
+
+		int multiplier = (255 / (umbralUp - umbralDown));
+
+		for (int i = 0; i < umbralImage.getWidth(); i++) {
+			for (int j = 0; j < umbralImage.getHeight(); j++) {
+
+				Color imageColor = new Color(umbralImage.getRGB(i, j));
+
+				if (imageColor.getRed() <= umbralUp && imageColor.getRed() >= umbralDown) {
+
+					int colorNumber = (imageColor.getRed() - umbralDown) * multiplier;
+					imageColor = new Color(colorNumber, colorNumber, colorNumber);
+
 				}
 
 				umbralImage.setRGB(i, j, imageColor.getRGB());

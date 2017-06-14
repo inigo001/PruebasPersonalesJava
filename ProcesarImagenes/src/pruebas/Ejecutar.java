@@ -10,7 +10,7 @@ public class Ejecutar {
 
 	private static final String IMAGE_ROUTE = "data/testImages/";
 	private static final String WRITE_ROUTE = "write/testResult/";
-	private static String imageName = "gato_2.jpg";
+	private static String imageName = "gato_1.jpg";
 
 	public static void main(String[] args) {
 
@@ -28,8 +28,10 @@ public class Ejecutar {
 			// Transformaciones de la imagen
 			Ejecutar.buildOperators(path, image);
 
+			// Mezcla de imágenes
+			Ejecutar.multipleOperators(path, image);
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
@@ -102,6 +104,34 @@ public class Ejecutar {
 		outputfile = new File(path.getPath() + "/op6-invertedBinaryUmbral.png");
 		ImageIO.write(newImage, "png", outputfile);
 
+		// Histograma de Iluminación (Grises)
+		newImage = IndividualOperators.greyImageUmbral(image, 70, 200);
+		outputfile = new File(path.getPath() + "/op7-greyImageUmbral.png");
+		ImageIO.write(newImage, "png", outputfile);
+
+		// Histograma de Iluminación (Grises)
+		newImage = IndividualOperators.invertedGreyImageUmbral(image, 70, 200);
+		outputfile = new File(path.getPath() + "/op8-invertedGreyImageUmbral.png");
+		ImageIO.write(newImage, "png", outputfile);
+
+		// Histograma de Iluminación (Grises)
+		newImage = IndividualOperators.extensionUmbral(image, 70, 200);
+		outputfile = new File(path.getPath() + "/op9-extensionUmbral.png");
+		ImageIO.write(newImage, "png", outputfile);
+
 	}
 
+	private static void multipleOperators(File path, BufferedImage image) throws Exception {
+
+		File outputfile;
+
+		// Histograma de Iluminación (Grises)
+		BufferedImage binaryUmbral = IndividualOperators.imageUmbral(image, 20);
+
+		BufferedImage comboImage = MultipleOperators.unite(binaryUmbral, image);
+
+		outputfile = new File(path.getPath() + "/op10-comboImage.png");
+		ImageIO.write(comboImage, "png", outputfile);
+
+	}
 }

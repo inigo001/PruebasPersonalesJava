@@ -74,7 +74,7 @@ public class Histogram {
 
 		BufferedImage histoImage = new BufferedImage(IMAGE_PIXEL_WIDTH * widthMultiplier, height,
 				BufferedImage.TYPE_INT_RGB);
-		this.clearBufferedImage(histoImage);
+		Tools.clearBufferedImage(histoImage);
 
 		for (int i = 0; i < IMAGE_PIXEL_WIDTH; i++) {
 
@@ -89,17 +89,6 @@ public class Histogram {
 		}
 
 		return histoImage;
-
-	}
-
-	private void clearBufferedImage(BufferedImage imagen) {
-
-		for (int i = 0; i < imagen.getWidth(); i++) {
-
-			for (int j = 0; j < imagen.getHeight(); j++) {
-				imagen.setRGB(i, j, (new Color(255, 255, 255)).getRGB());
-			}
-		}
 
 	}
 
