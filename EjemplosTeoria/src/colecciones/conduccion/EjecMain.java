@@ -10,7 +10,7 @@ public class EjecMain {
 		List<Persona> listadoDePersonas = EjecMain.cargarListaPersonas();
 
 		System.out.println(" -- ");
-		
+
 		EjecMain.recorrerPersonas(listadoDePersonas);
 
 	}
@@ -56,8 +56,13 @@ public class EjecMain {
 
 	public static void recorrerPersonas(List<Persona> personas) {
 
+		// Es preferible crear una variable temporal fuera del iterador en vez
+		// de dentro de éste, puesto que resulta más eficiente.
+		Persona persona = null;
+
 		for (int i = 0; i < personas.size(); i++) {
-			System.out.println("Persona número " + i + ": " + personas.get(i));
+			persona = personas.get(i);
+			System.out.println("Persona número " + i + ": " + persona);
 		}
 
 	}
