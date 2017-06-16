@@ -36,4 +36,47 @@ public class Tools {
 
 	}
 
+	public static boolean checkNeighbours(int x, int y, BufferedImage imagen, int neighbourLength, int colorDistance) {
+
+		Color imageColor = new Color(imagen.getRGB(x, y));
+
+		boolean noClash = true;
+
+		for (int newX = x - neighbourLength; (newX <= x + neighbourLength) && (noClash); newX++) {
+
+			if (newX >= 0 && newX < imagen.getWidth()) {
+
+				for (int newY = y - neighbourLength; (newY <= y + neighbourLength) && (noClash); newY++) {
+
+					if (newY >= 0 && newY < imagen.getHeight()) {
+
+						Color newColor = new Color(imagen.getRGB(newX, newY));
+						noClash = (checkClash(imageColor, newColor, colorDistance));
+
+					}
+
+				}
+
+			}
+
+		}
+
+		return noClash;
+
+	}
+
+	private static boolean checkClash(Color oldColor, Color newColor, int colorDistance) {
+
+		boolean redClass = (oldColor.getRed() + colorDistance > newColor.getRed()
+				&& oldColor.getRed() - colorDistance < newColor.getRed());
+
+		boolean greenClass = (oldColor.getGreen() + colorDistance > newColor.getGreen()
+				&& oldColor.getGreen() - colorDistance < newColor.getGreen());
+
+		boolean blueClass = (oldColor.getBlue() + colorDistance > newColor.getBlue()
+				&& oldColor.getBlue() - colorDistance < newColor.getBlue());
+
+		return redClass && (greenClass || blueClass) || (greenClass && blueClass);
+	}
+
 }
