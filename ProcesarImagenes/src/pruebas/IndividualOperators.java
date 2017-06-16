@@ -165,32 +165,5 @@ public class IndividualOperators {
 		return umbralImage;
 	}
 
-	// Pintamos los bordes de la imagen. Nos basamos en los puntos cercanos al
-	// objeto (pueden ser un número distinto) y en las diferencias de color
-	// entre ellos.
-
-	public static BufferedImage paintBorders(BufferedImage image, int neighbourLength, int colorDistance) {
-
-		BufferedImage newImage = Tools.copyBufferedImage(image);
-
-		for (int i = 0; i < image.getWidth(); i++) {
-			for (int j = 0; j < image.getHeight(); j++) {
-
-				Color nuevoColor;
-
-				if (Tools.checkNeighbours(i, j, image, neighbourLength, colorDistance)) {
-					nuevoColor = new Color(255, 255, 255);
-				} else {
-					nuevoColor = new Color(0, 0, 0);
-				}
-
-				newImage.setRGB(i, j, nuevoColor.getRGB());
-
-			}
-		}
-
-		return newImage;
-
-	}
 
 }

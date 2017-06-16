@@ -10,7 +10,7 @@ public class Ejecutar {
 
 	private static final String IMAGE_ROUTE = "data/testImages/";
 	private static final String WRITE_ROUTE = "write/testResult/";
-	private static String imageName = "gato_3.jpg";
+	private static String imageName = "gato_6.jpg";
 
 	public static void main(String[] args) {
 
@@ -30,6 +30,8 @@ public class Ejecutar {
 
 			// Mezcla de imágenes
 			Ejecutar.multipleOperators(path, image);
+
+			Ejecutar.specialOperators(path, image);
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -119,7 +121,7 @@ public class Ejecutar {
 		outputfile = new File(path.getPath() + "/op9-extensionUmbral.png");
 		ImageIO.write(newImage, "png", outputfile);
 
-		newImage = IndividualOperators.paintBorders(image, 1, 10);
+		newImage = SpecialOperators.paintBorders(image, 1, 10);
 		outputfile = new File(path.getPath() + "/op10-imageSides.png");
 		ImageIO.write(newImage, "png", outputfile);
 
@@ -137,15 +139,30 @@ public class Ejecutar {
 		outputfile = new File(path.getPath() + "/test1-comboImage1.png");
 		ImageIO.write(comboImage, "png", outputfile);
 
-		
-		// 
+		//
 		BufferedImage umbral = IndividualOperators.imageInvertedUmbral(image, 120);
-		BufferedImage border = IndividualOperators.paintBorders(image, 1, 10);
+		BufferedImage border = SpecialOperators.paintBorders(image, 1, 10);
 
 		comboImage = MultipleOperators.unite(umbral, border);
 
 		outputfile = new File(path.getPath() + "/test2-comboImage2.png");
 		ImageIO.write(comboImage, "png", outputfile);
 
+	}
+
+	private static void specialOperators(File path, BufferedImage image) throws Exception {
+
+		BufferedImage newImage;
+		File outputfile;
+
+		// Imagen invertida
+		newImage = SpecialOperators.colorBlocks(image, 32);
+		outputfile = new File(path.getPath() + "/blocks.png");
+		ImageIO.write(newImage, "png", outputfile);
+
+		// Imagen invertida
+		newImage = SpecialOperators.changeColorLength(image, 3);
+		outputfile = new File(path.getPath() + "/colors.png");
+		ImageIO.write(newImage, "png", outputfile);
 	}
 }

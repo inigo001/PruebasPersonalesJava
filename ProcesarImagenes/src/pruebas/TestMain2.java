@@ -6,11 +6,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+// ESTOS HILOS SON UN POCO PELIGROSOS ASÍ QUE HAY QUE USARLOS CON PRECAUCIÓN
+
 public class TestMain2 {
 
 	private static final String IMAGE_ROUTE = "data/testImages/";
 	private static final String WRITE_ROUTE = "write/test/";
-	private static String imageName = "gato_3.jpg";
+	private static String imageName = "gato_4.jpg";
 
 	private static File path;
 
@@ -30,7 +32,6 @@ public class TestMain2 {
 
 					hilo1.start();
 				}
-
 			}
 
 		} catch (Exception e) {
@@ -56,7 +57,7 @@ public class TestMain2 {
 		public void run() {
 			try {
 
-				BufferedImage newImage = IndividualOperators.paintBorders(image, i, j);
+				BufferedImage newImage = SpecialOperators.paintBorders(image, i, j);
 				File outputfile = new File(path.getPath() + "/" + i + "-" + j + ".png");
 				ImageIO.write(newImage, "png", outputfile);
 

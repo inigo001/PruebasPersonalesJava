@@ -22,7 +22,7 @@ public class TestBuscarPersonas {
 		Persona personaBuscar = new Persona("Juan", "Lopez", new Dni("2233445566", 'A'));
 
 		Persona personaEncontrada = buscar(listaPersonas, personaBuscar);
-
+		
 		System.out.println(personaEncontrada);
 
 	}
