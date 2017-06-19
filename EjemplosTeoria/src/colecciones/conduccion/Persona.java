@@ -1,6 +1,6 @@
 package colecciones.conduccion;
 
-public class Persona {
+public class Persona implements Comparable<Persona> {
 	private Integer codPersona;
 	private String nombre;
 	private String apellido;
@@ -82,5 +82,24 @@ public class Persona {
 	@Override
 	public String toString() {
 		return nombre + " " + apellido + " " + dni;
+	}
+
+	@Override
+	public int compareTo(Persona other) {
+
+		if (this.equals(other)) {
+			return 0;
+		}
+
+		int num = this.apellido.compareTo(other.apellido);
+
+		if (num == 0) {
+			num = this.nombre.compareTo(other.nombre);
+			if (num == 0) {
+				num = this.dni.compareTo(other.dni);
+			}
+		}
+
+		return num;
 	}
 }

@@ -10,7 +10,7 @@ public class Ejecutar {
 
 	private static final String IMAGE_ROUTE = "data/testImages/";
 	private static final String WRITE_ROUTE = "write/testResult/";
-	private static String imageName = "gato_6.jpg";
+	private static String imageName = "gato_8.jpg";
 
 	public static void main(String[] args) {
 
@@ -20,19 +20,24 @@ public class Ejecutar {
 			File path = new File(WRITE_ROUTE + imageName.split("\\.")[0]);
 			if (!path.exists())
 				path.mkdir();
+			
+			File outputfile = new File(path.getPath() + "/__MAIN.png");
+			ImageIO.write(image, "png", outputfile);
 
 			// Creamos histogramas
 			Histogram imageHisto = new Histogram(image);
-			// Ejecutar.buildHistograms(path, imageHisto);
+			Ejecutar.buildHistograms(path, imageHisto);
 
 			// Transformaciones de la imagen
-			// Ejecutar.buildOperators(path, image);
+			Ejecutar.buildOperators(path, image);
 
 			// Mezcla de imágenes
-			// Ejecutar.multipleOperators(path, image);
+			Ejecutar.multipleOperators(path, image);
 
-			// Ejecutar.specialOperators(path, image);
+			// Operaciones especiales
+			Ejecutar.specialOperators(path, image);
 
+			// Correcciones con colres
 			Ejecutar.colorCorrections(path, image);
 
 		} catch (Exception e) {
@@ -173,8 +178,18 @@ public class Ejecutar {
 		BufferedImage newImage;
 		File outputfile;
 		
-		newImage = ColorCorrections.contrastImage(image);
-		outputfile = new File(path.getPath() + "/colorCorrBad.png");
+		newImage = ColorCorrections.contrastImage(image , 20, 80);
+		outputfile = new File(path.getPath() + "/_1.png");
+		ImageIO.write(newImage, "png", outputfile);
+		
+		newImage = ColorCorrections.contrastImage(image , 90, 120);
+		outputfile = new File(path.getPath() + "/_2.png");
+		ImageIO.write(newImage, "png", outputfile);
+		
+		int w = 1250;
+		
+		newImage = ColorCorrections.contrastImage	(image , 0 - w, 255 + w);
+		outputfile = new File(path.getPath() + "/_3.png");
 		ImageIO.write(newImage, "png", outputfile);
 
 	}

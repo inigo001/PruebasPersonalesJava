@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class ColorCorrections {
 
-	public static BufferedImage contrastImage(BufferedImage image) {
+	public static BufferedImage contrastImage(BufferedImage image, int bot, int top) {
 
 		BufferedImage newImage = Tools.copyBufferedImage(image);
 
@@ -13,9 +13,6 @@ public class ColorCorrections {
 		int r;
 		int g;
 		int b;
-
-		int top = 200;
-		int bot = 55;
 
 		int range = top - bot;
 		double multiplier = (double) 255 / range;

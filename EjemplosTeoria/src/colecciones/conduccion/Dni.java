@@ -1,6 +1,6 @@
 package colecciones.conduccion;
 
-public class Dni {
+public class Dni implements Comparable<Dni> {
 
 	private String numero;
 	private char letra;
@@ -62,5 +62,18 @@ public class Dni {
 		} else if (!numero.equals(other.numero))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Dni other) {
+
+		if (this.equals(other)) {
+			return 0;
+		}
+
+		int thisNum = Integer.parseInt(this.numero);
+		int otherNum = Integer.parseInt(other.numero);
+
+		return thisNum - otherNum;
 	}
 }
