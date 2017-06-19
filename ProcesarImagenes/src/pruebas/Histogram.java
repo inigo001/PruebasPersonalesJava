@@ -7,9 +7,13 @@ public class Histogram {
 
 	private BufferedImage image;
 
+	/* CONSTRUCTOR */
+
 	public Histogram(BufferedImage image) {
 		this.image = image;
 	}
+
+	/* METHODS */
 
 	public int[] getColorArray(Channel channel) {
 
@@ -89,6 +93,16 @@ public class Histogram {
 		}
 
 		return histoImage;
+
+	}
+
+	public void showChannelContent(Channel channel) {
+
+		int[] colorArray = this.getColorArray(channel);
+
+		for (int i = 0; i < colorArray.length - 1; i++) {
+			System.out.println("col " + i + " : " + colorArray[i]);
+		}
 
 	}
 

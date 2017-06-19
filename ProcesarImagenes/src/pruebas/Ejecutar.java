@@ -10,7 +10,7 @@ public class Ejecutar {
 
 	private static final String IMAGE_ROUTE = "data/testImages/";
 	private static final String WRITE_ROUTE = "write/testResult/";
-	private static String imageName = "gato_7.jpg";
+	private static String imageName = "gato_2.jpg";
 
 	public static void main(String[] args) {
 
@@ -23,15 +23,17 @@ public class Ejecutar {
 
 			// Creamos histogramas
 			Histogram imageHisto = new Histogram(image);
-			Ejecutar.buildHistograms(path, imageHisto);
+			// Ejecutar.buildHistograms(path, imageHisto);
 
 			// Transformaciones de la imagen
-			//Ejecutar.buildOperators(path, image);
+			// Ejecutar.buildOperators(path, image);
 
 			// Mezcla de imágenes
-			//Ejecutar.multipleOperators(path, image);
+			// Ejecutar.multipleOperators(path, image);
 
-			//Ejecutar.specialOperators(path, image);
+			// Ejecutar.specialOperators(path, image);
+
+			Ejecutar.colorCorrections(path, image);
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -164,5 +166,16 @@ public class Ejecutar {
 		newImage = SpecialOperators.changeColorLength(image, 3);
 		outputfile = new File(path.getPath() + "/colors.png");
 		ImageIO.write(newImage, "png", outputfile);
+	}
+
+	private static void colorCorrections(File path, BufferedImage image) throws Exception {
+
+		BufferedImage newImage;
+		File outputfile;
+		
+		newImage = ColorCorrections.contrastImage(image);
+		outputfile = new File(path.getPath() + "/colorCorrBad.png");
+		ImageIO.write(newImage, "png", outputfile);
+
 	}
 }
