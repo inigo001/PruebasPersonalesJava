@@ -30,14 +30,18 @@ public class TestMapInigo {
 
 		// -
 
-		Dni dni4 = new Dni("02345684", 'x');
+		Dni dni4 = new Dni("23711892", 'W');
 		Persona persona4 = new Persona("Erminginio", "Albertez", dni4);
 
-		miMapa.put(dni4, persona4);
+		Persona putOut = miMapa.put(dni4, persona4);
 
+		System.out.println("sudiso: " + putOut);
+		
 		testPersona = miMapa.get(dni3);
 		System.out.println(testPersona);
 		// ESTO ES RARO RARO RARO :(
+
+		System.out.println("Tamaño: " + miMapa.size());
 
 	}
 

@@ -10,7 +10,7 @@ public class Ejecutar {
 
 	private static final String IMAGE_ROUTE = "data/testImages/";
 	private static final String WRITE_ROUTE = "write/testResult/";
-	private static String imageName = "gato_6.jpg";
+	private static String imageName = "gato_7.jpg";
 
 	public static void main(String[] args) {
 
@@ -26,12 +26,12 @@ public class Ejecutar {
 			Ejecutar.buildHistograms(path, imageHisto);
 
 			// Transformaciones de la imagen
-			Ejecutar.buildOperators(path, image);
+			//Ejecutar.buildOperators(path, image);
 
 			// Mezcla de imágenes
-			Ejecutar.multipleOperators(path, image);
+			//Ejecutar.multipleOperators(path, image);
 
-			Ejecutar.specialOperators(path, image);
+			//Ejecutar.specialOperators(path, image);
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

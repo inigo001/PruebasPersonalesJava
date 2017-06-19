@@ -98,6 +98,10 @@ public class TestSet2 {
 			Persona persona = (Persona) it.next();
 			System.out.println(persona);
 		}
+
+		for (Persona persona : set) {
+			System.out.println(persona);
+		}
 	}
 
 }
