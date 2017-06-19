@@ -1,7 +1,9 @@
 package colecciones.colecciones;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import colecciones.conduccion.*;
 
@@ -11,6 +13,7 @@ public class TestMapInigo {
 
 		Map<Dni, Persona> miMapa = new HashMap<Dni, Persona>();
 		Persona testPersona = null;
+		Dni testDni = null;
 
 		Dni dni1 = new Dni("02345684", 'x');
 		Persona persona1 = new Persona("Adalberto", "Ruiperez", dni1);
@@ -36,12 +39,26 @@ public class TestMapInigo {
 		Persona putOut = miMapa.put(dni4, persona4);
 
 		System.out.println("sudiso: " + putOut);
-		
+
 		testPersona = miMapa.get(dni3);
 		System.out.println(testPersona);
-		// ESTO ES RARO RARO RARO :(
 
 		System.out.println("Tamaño: " + miMapa.size());
+
+		// Recorremos el Mapa
+
+		Set<Dni> keys = miMapa.keySet();
+
+		Iterator<Dni> it = keys.iterator();
+
+		System.out.println("\n -_- \n");
+		
+		while (it.hasNext()) {
+			testDni = it.next();
+			testPersona = miMapa.get(testDni);
+			
+			System.out.println(testPersona);
+		}
 
 	}
 

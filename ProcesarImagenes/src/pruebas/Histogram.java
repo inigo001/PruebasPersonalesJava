@@ -96,14 +96,4 @@ public class Histogram {
 
 	}
 
-	public void showChannelContent(Channel channel) {
-
-		int[] colorArray = this.getColorArray(channel);
-
-		for (int i = 0; i < colorArray.length - 1; i++) {
-			System.out.println("col " + i + " : " + colorArray[i]);
-		}
-
-	}
-
 }

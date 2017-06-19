@@ -10,7 +10,7 @@ public class Ejecutar {
 
 	private static final String IMAGE_ROUTE = "data/testImages/";
 	private static final String WRITE_ROUTE = "write/testResult/";
-	private static String imageName = "gato_2.jpg";
+	private static String imageName = "gato_6.jpg";
 
 	public static void main(String[] args) {
 
