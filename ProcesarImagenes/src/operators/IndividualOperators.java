@@ -13,21 +13,57 @@ public class IndividualOperators {
 
 	// Imagen en escala de grises
 
+	public static BufferedImage dramaticGreyScale(BufferedImage image, double red, double green, double blue) {
+
+		BufferedImage newImage = Tools.copyBufferedImage(image);
+
+		newImage = IndividualOperators.greyColorFilter(newImage, red, green, blue);
+
+		return newImage;
+
+	}
+
 	public static BufferedImage greyScale(BufferedImage image) {
 
-		BufferedImage greyScaleImage = Tools.copyBufferedImage(image);
+		BufferedImage newImage = Tools.copyBufferedImage(image);
 
-		for (int i = 0; i < greyScaleImage.getWidth(); i++) {
-			for (int j = 0; j < greyScaleImage.getHeight(); j++) {
+		newImage = IndividualOperators.greyColorFilter(newImage, 1, 1, 1);
 
-				Color imageColor = new Color(greyScaleImage.getRGB(i, j));
-				int newBaseColor = (int) ((imageColor.getRed() + imageColor.getGreen() + imageColor.getBlue()) / 3);
+		return newImage;
+	}
+
+	public static BufferedImage luminanceGrey(BufferedImage image) {
+
+		BufferedImage newImage = Tools.copyBufferedImage(image);
+
+		newImage = IndividualOperators.greyColorFilter(newImage, 0.25, 0.65, 0.10);
+
+		return newImage;
+	}
+
+	private static BufferedImage greyColorFilter(BufferedImage image, double red, double green, double blue) {
+
+		double divisor = red + green + blue;
+
+		System.out.println(divisor);
+
+		for (int i = 0; i < image.getWidth(); i++) {
+			for (int j = 0; j < image.getHeight(); j++) {
+
+				Color imageColor = new Color(image.getRGB(i, j));
+
+				int newBaseColor = (int) (((imageColor.getRed() * red) + (imageColor.getGreen() * green)
+						+ (imageColor.getBlue() * blue)) / divisor);
+
+				newBaseColor = (newBaseColor > 255) ? 255 : newBaseColor;
+				newBaseColor = (newBaseColor < 0) ? 0 : newBaseColor;
+
 				Color newColor = new Color(newBaseColor, newBaseColor, newBaseColor);
-				greyScaleImage.setRGB(i, j, newColor.getRGB());
+				image.setRGB(i, j, newColor.getRGB());
 			}
 		}
 
-		return greyScaleImage;
+		return image;
 	}
 
 	// Negativo de la imagen
@@ -166,6 +202,5 @@ public class IndividualOperators {
 
 		return umbralImage;
 	}
-
 
 }

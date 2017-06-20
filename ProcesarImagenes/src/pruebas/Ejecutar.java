@@ -27,7 +27,7 @@ public class Ejecutar {
 			File path = new File(WRITE_ROUTE + imageName.split("\\.")[0]);
 			if (!path.exists())
 				path.mkdir();
-			
+
 			File outputfile = new File(path.getPath() + "/__MAIN.png");
 			ImageIO.write(image, "png", outputfile);
 
@@ -135,6 +135,7 @@ public class Ejecutar {
 		outputfile = new File(path.getPath() + "/op9-extensionUmbral.png");
 		ImageIO.write(newImage, "png", outputfile);
 
+		//
 		newImage = SpecialOperators.paintBorders(image, 1, 10);
 		outputfile = new File(path.getPath() + "/op10-imageSides.png");
 		ImageIO.write(newImage, "png", outputfile);
@@ -184,18 +185,18 @@ public class Ejecutar {
 
 		BufferedImage newImage;
 		File outputfile;
-		
-		newImage = ColorCorrections.contrastImage(image , 20, 80);
+
+		newImage = ColorCorrections.contrastImage(image, 20, 80);
 		outputfile = new File(path.getPath() + "/_1.png");
 		ImageIO.write(newImage, "png", outputfile);
-		
-		newImage = ColorCorrections.contrastImage(image , 90, 120);
+
+		newImage = ColorCorrections.contrastImage(image, 90, 120);
 		outputfile = new File(path.getPath() + "/_2.png");
 		ImageIO.write(newImage, "png", outputfile);
-		
+
 		int w = 1250;
-		
-		newImage = ColorCorrections.contrastImage	(image , 0 - w, 255 + w);
+
+		newImage = ColorCorrections.contrastImage(image, 0 - w, 255 + w);
 		outputfile = new File(path.getPath() + "/_3.png");
 		ImageIO.write(newImage, "png", outputfile);
 

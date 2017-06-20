@@ -7,6 +7,7 @@ import java.net.URLConnection;
 
 import javax.imageio.ImageIO;
 
+import operators.IndividualOperators;
 import operators.MultipleOperators;
 
 public class TestMain1 {
@@ -31,9 +32,29 @@ public class TestMain1 {
 			BufferedImage img2 = ImageIO.read(conn2.getInputStream());
 			BufferedImage img3 = ImageIO.read(conn3.getInputStream());
 
-			BufferedImage gatoMezcla = MultipleOperators.unite(img1, img2, img3);
+			BufferedImage gatoMezcla = IndividualOperators.dramaticGreyScale(img3, -0.45, 0.75, 0.70);
 
-			File outputfile = new File(WRITE_ROUTE + "/horror.png");
+			File outputfile = new File(WRITE_ROUTE + "/fdaf1.png");
+			ImageIO.write(gatoMezcla, "png", outputfile);
+
+			gatoMezcla = IndividualOperators.dramaticGreyScale(img3, -0.20, -0.20, 1.40);
+
+			outputfile = new File(WRITE_ROUTE + "/fdaf2.png");
+			ImageIO.write(gatoMezcla, "png", outputfile);
+
+			gatoMezcla = IndividualOperators.luminanceGrey(img3);
+
+			outputfile = new File(WRITE_ROUTE + "/fdaf3_lum.png");
+			ImageIO.write(gatoMezcla, "png", outputfile);
+
+			gatoMezcla = IndividualOperators.dramaticGreyScale(img3, 0.65, 0.10, 0.25);
+
+			outputfile = new File(WRITE_ROUTE + "/fdaf4_lum.png");
+			ImageIO.write(gatoMezcla, "png", outputfile);
+
+			gatoMezcla = IndividualOperators.greyScale(img3);
+
+			outputfile = new File(WRITE_ROUTE + "/fdaf5_grey.png");
 			ImageIO.write(gatoMezcla, "png", outputfile);
 
 		} catch (Exception e) {
