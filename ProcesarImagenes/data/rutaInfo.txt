@@ -1,3 +1,11 @@
 http://www2.elo.utfsm.cl/~elo328/
 http://www2.elo.utfsm.cl/~elo328/pdf1dpp/
 https://docs.oracle.com/cd/E19957-01/806-5413-10/806-5413-10.pdf
+
+
+# Commons Imaging
+
+Es una librería de apache para trabajar con imágenes. El JAI parece que está un poco abandona 
+a su suerte, así que parece conveniente usar una librería de Apache un poco más actualizada.
+
+http://commons.apache.org/proper/commons-imaging/
