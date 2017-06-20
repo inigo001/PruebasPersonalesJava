@@ -41,6 +41,67 @@ public class IndividualOperators {
 		return newImage;
 	}
 
+	public static BufferedImage maximumContrastGrey(BufferedImage image) {
+
+		BufferedImage newImage = Tools.copyBufferedImage(image);
+
+		int sum = 0;
+		int sumR = 0, sumG = 0, sumB = 0;
+		int sumR2 = 0, sumG2 = 0, sumB2 = 0;
+		int sumRG = 0, sumRB = 0;
+
+		for (int i = 0; i < image.getWidth(); i++) {
+			for (int j = 0; j < image.getHeight(); j++) {
+
+				Color imageColor = new Color(image.getRGB(i, j));
+
+				sumR += imageColor.getRed();
+				sumG += imageColor.getGreen();
+				sumB += imageColor.getBlue();
+
+				sumR2 += Math.pow(imageColor.getRed(), 2);
+				sumG2 += Math.pow(imageColor.getGreen(), 2);
+				sumB2 += Math.pow(imageColor.getBlue(), 2);
+
+				sumRG += imageColor.getRed() * imageColor.getGreen();
+				sumRB += imageColor.getRed() * imageColor.getBlue();
+
+				sum++;
+
+			}
+		}
+
+		double mR = sumR2 - ((sumR * sumR) / (double) sum);
+		double mG = sumG2 - ((sumG * sumG) / (double) sum);
+		double mB = sumB2 - ((sumB * sumB) / (double) sum);
+
+		double mRG = sumRG - ((sumR * sumG) / (double) sum);
+		double mRB = sumRB - ((sumR * sumB) / (double) sum);
+
+		double tRG = mG - mR;
+		double tRB = mB - mR;
+
+		double rRG = Math.sqrt(tRG * tRG + 4 * mRG * mRG);
+		double rRB = Math.sqrt(tRB * tRB + 4 * mRB * mRB);
+
+		double sRG = (tRG + rRG) / (2 * mRG);
+		double sRB = (tRB + rRB) / (2 * mRB);
+
+		double gP = 1 / sRG;
+		double bP = 1 / sRB;
+
+		double len = Math.sqrt(1 + gP * gP + bP * bP);
+
+		double cosR = 1 / len;
+		double cosG = gP / len;
+		double cosB = bP / len;
+
+		newImage = IndividualOperators.greyColorFilter(newImage, cosR, cosG, cosB);
+
+		return newImage;
+
+	}
+
 	private static BufferedImage greyColorFilter(BufferedImage image, double red, double green, double blue) {
 
 		double divisor = red + green + blue;
