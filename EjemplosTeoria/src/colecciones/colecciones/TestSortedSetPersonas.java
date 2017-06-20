@@ -10,10 +10,10 @@ import colecciones.conduccion.Persona;
 public class TestSortedSetPersonas {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		Set<Persona> personas = new TreeSet<Persona>();
 
+		// -
 		Dni dni1 = new Dni("12345678", 'W');
 		Persona persona1 = new Persona("Pepe", "Domínguez", dni1);
 		// -
@@ -47,6 +47,7 @@ public class TestSortedSetPersonas {
 		Dni dni11 = new Dni("12388952", 'P');
 		Persona persona11 = new Persona("Gerifonia", "Marín", dni11);
 
+		// -
 		personas.add(persona1);
 		personas.add(persona2);
 		personas.add(persona3);
@@ -59,6 +60,7 @@ public class TestSortedSetPersonas {
 		personas.add(persona10);
 		personas.add(persona11);
 
+		// -
 		TestSortedSetPersonas.leerPersonas(personas);
 
 	}

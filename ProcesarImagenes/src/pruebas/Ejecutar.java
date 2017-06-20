@@ -6,11 +6,18 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import operators.ColorCorrections;
+import operators.IndividualOperators;
+import operators.MultipleOperators;
+import operators.SpecialOperators;
+import tools.Channel;
+import tools.Histogram;
+
 public class Ejecutar {
 
 	private static final String IMAGE_ROUTE = "data/testImages/";
 	private static final String WRITE_ROUTE = "write/testResult/";
-	private static String imageName = "gato_8.jpg";
+	private static String imageName = "gato_9.jpg";
 
 	public static void main(String[] args) {
 

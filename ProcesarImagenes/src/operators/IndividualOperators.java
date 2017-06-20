@@ -1,7 +1,9 @@
-package pruebas;
+package operators;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+
+import tools.Tools;
 
 public class IndividualOperators {
 

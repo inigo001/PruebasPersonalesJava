@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import operators.SpecialOperators;
+
 // ESTOS HILOS SON UN POCO PELIGROSOS ASÍ QUE HAY QUE USARLOS CON PRECAUCIÓN
 
 public class TestMain2 {

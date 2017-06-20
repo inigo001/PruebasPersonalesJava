@@ -1,4 +1,4 @@
-package pruebas;
+package operators;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

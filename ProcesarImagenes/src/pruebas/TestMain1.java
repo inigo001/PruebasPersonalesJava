@@ -7,6 +7,8 @@ import java.net.URLConnection;
 
 import javax.imageio.ImageIO;
 
+import operators.MultipleOperators;
+
 public class TestMain1 {
 
 	private static final String WRITE_ROUTE = "write/test/";
