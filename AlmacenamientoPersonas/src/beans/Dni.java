@@ -6,13 +6,23 @@ public class Dni implements Comparable<Dni> {
 	private char letra;
 
 	/* CONSTRUCTORES */
-	
+
 	public Dni(String numero, char letra) {
 		this.numero = numero;
 		this.letra = letra;
 	}
-	
+
 	/* METODOS */
+
+	public static char calcularLetra(int numeroDni) {
+
+		int mod = numeroDni % 23;
+		
+		LetrasDni valor = LetrasDni.values()[mod];
+		
+		return valor.toString().charAt(0);
+
+	}
 
 	/* GET Y SET */
 
@@ -31,7 +41,7 @@ public class Dni implements Comparable<Dni> {
 	public void setLetra(char letra) {
 		this.letra = letra;
 	}
-	
+
 	/* OVERRIDES */
 
 	@Override
@@ -80,4 +90,3 @@ public class Dni implements Comparable<Dni> {
 		return thisNum - otherNum;
 	}
 }
-

@@ -19,7 +19,7 @@ public class EjecutarLeerDatos {
 	public static void mostrarPersonas(List<Persona> listaPersonas) {
 
 		for (Persona persona : listaPersonas) {
-			System.out.println(persona + "  456f ad456f asd789");
+			System.out.println(persona);
 		}
 
 	}

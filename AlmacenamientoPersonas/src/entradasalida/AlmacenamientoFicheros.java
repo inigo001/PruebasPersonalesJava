@@ -16,22 +16,32 @@ public class AlmacenamientoFicheros {
 
 	public static void guardarPersonas(String nombreFichero, List<Persona> listaPersonas) {
 
-		String txtEscribir = "";
-
-		Iterator<Persona> it = listaPersonas.iterator();
-
-		Persona persona;
-		while (it.hasNext()) {
-			persona = it.next();
-			txtEscribir += persona.toString() + ((it.hasNext()) ? "\n" : "");
-		}
+		System.out.println("Iniciando escritura de datos...");
+		System.out.println("Número de datos a guardar: " + listaPersonas.size() + "\n");
 
 		try {
+
+			String txtEscribir = "";
+
+			Iterator<Persona> it = listaPersonas.iterator();
+
+			Persona persona;
+			while (it.hasNext()) {
+				persona = it.next();
+				txtEscribir += persona.toString() + ((it.hasNext()) ? "\n" : "");
+			}
+
 			PrintWriter writer = new PrintWriter(nombreFichero, "UTF-8");
 			writer.println(txtEscribir);
 			writer.close();
+
+			System.out.println("Datos Guardados correctamente en " + "\"" + nombreFichero + "\"");
+
 		} catch (IOException e) {
+
 			e.printStackTrace();
+			System.out.println("No se ha podido escribir el fichero, inténtalo de otra manera");
+
 		}
 
 	}
@@ -51,7 +61,12 @@ public class AlmacenamientoFicheros {
 			for (String texto : listText) {
 
 				contenido = texto.split("\\s");
+				if (contenido.length != 3)
+					throw new Exception("Error en el formato del fichero");
+
 				contenidoDni = contenido[2].split("-");
+				if (contenidoDni.length != 2)
+					throw new Exception("Error en el formato del fichero");
 
 				dni = new Dni(contenidoDni[0], contenidoDni[1].charAt(0));
 				persona = new Persona(contenido[0], contenido[1], dni);
@@ -60,13 +75,10 @@ public class AlmacenamientoFicheros {
 
 			}
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return listaPersonas;
-
 	}
-
 }

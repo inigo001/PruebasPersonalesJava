@@ -2,11 +2,22 @@ package colecciones;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import beans.Dni;
 import beans.Persona;
 
 public class CrearColeccion {
+
+	private static String[] nombres = new String[] { "Pepe", "Domingo", "Alberta", "Gerifonia", "Estudinia",
+			"Adalberto", "Enriqueta", "Mikel", "Iñigo", "Juan", "Chindasbinto", "Recesbinto", "Teódulo", "Orestes",
+			"Hugo", "Juan", "Jesús", "Anacleto", "Perfinia", "Incontinencia", "Felicitación", "María", "Gerundina",
+			"Participia", "Onofre", "Pérfida", "Santa", "Herminia", "Erundino" };
+
+	private static String[] apellidos = new String[] { "Perez", "Dominguez", "Albertez", "Mínguez", "Marín", "Mondeled",
+			"Mónguez", "Bilbao", "Donostio", "López", "Yuste", "Pepez", "Adalez", "Chumbo", "Pedril", "Becerro",
+			"Astimburio", "Goiribeitialarri", "Zaldigoitia", "Scott", "Johns", "Idiotez", "Ruipérez", "Pepínez",
+			"Embriaguez", "Taribinio", "Ósculo" };
 
 	public static List<Persona> listaPersonas() {
 
@@ -60,6 +71,35 @@ public class CrearColeccion {
 
 		return listaPersonas;
 
+	}
+
+	public static List<Persona> listaPersonas(int cantidad) {
+
+		List<Persona> listaPersonas = new ArrayList<Persona>();
+
+		Dni dni;
+		Persona persona;
+		int random;
+		String nombre;
+		String apellido;
+		String numeroDni;
+
+		for (int i = 0; i < cantidad; i++) {
+
+			random = ThreadLocalRandom.current().nextInt(0, CrearColeccion.nombres.length);
+			nombre = CrearColeccion.nombres[random];
+			random = ThreadLocalRandom.current().nextInt(0, CrearColeccion.apellidos.length);
+			apellido = CrearColeccion.apellidos[random];
+			random = ThreadLocalRandom.current().nextInt(10000000, 100000000);
+			numeroDni = String.valueOf(random);
+
+			dni = new Dni(numeroDni, Dni.calcularLetra(random));
+			persona = new Persona(nombre, apellido, dni);
+
+			listaPersonas.add(persona);
+		}
+
+		return listaPersonas;
 	}
 
 }
