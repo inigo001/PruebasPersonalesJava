@@ -31,6 +31,8 @@ public class AlmacenamientoFicheros {
 				txtEscribir += persona.toString() + ((it.hasNext()) ? "\n" : "");
 			}
 
+			System.out.println("String Creado");
+
 			PrintWriter writer = new PrintWriter(nombreFichero, "UTF-8");
 			writer.println(txtEscribir);
 			writer.close();
