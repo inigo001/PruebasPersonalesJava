@@ -15,12 +15,14 @@ public class CrearColeccion {
 	private static String[] nombres = new String[] { "Pepe", "Domingo", "Alberta", "Gerifonia", "Estudinia",
 			"Adalberto", "Enriqueta", "Mikel", "Iñigo", "Juan", "Chindasbinto", "Recesbinto", "Teódulo", "Orestes",
 			"Hugo", "Juan", "Jesús", "Anacleto", "Perfinia", "Incontinencia", "Felicitación", "María", "Gerundina",
-			"Participia", "Onofre", "Pérfida", "Santa", "Herminia", "Erundino" };
+			"Participia", "Onofre", "Pérfida", "Santa", "Herminia", "Erundino", "Romualda", "Rigoberta", "Eustaquia",
+			"Ponciana", "Sancho", "Zigor", "Telésforo", "Siseguto", "Segismunda" };
 
 	private static String[] apellidos = new String[] { "Perez", "Dominguez", "Albertez", "Mínguez", "Marín", "Mondeled",
 			"Mónguez", "Bilbao", "Donostio", "López", "Yuste", "Pepez", "Adalez", "Chumbo", "Pedril", "Becerro",
 			"Astimburio", "Goiribeitialarri", "Zaldigoitia", "Scott", "Johns", "Idiotez", "Ruipérez", "Pepínez",
-			"Embriaguez", "Taribinio", "Ósculo" };
+			"Embriaguez", "Taribinio", "Ósculo", "Átropo", "Ramírez", "Altunabeitia", "Panez", "Alto", "Sanchez",
+			"Lobo", "Búho" };
 
 	public static List<Persona> listaPersonas() {
 
