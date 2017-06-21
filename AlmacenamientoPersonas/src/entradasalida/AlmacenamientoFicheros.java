@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,16 +15,16 @@ import beans.Persona;
 
 public class AlmacenamientoFicheros {
 
-	public static void guardarPersonas(String nombreFichero, List<Persona> listaPersonas) {
+	public static void guardarPersonas(String nombreFichero, Collection<Persona> coleccionPersonas) {
 
 		System.out.println("Iniciando escritura de datos...");
-		System.out.println("Número de datos a guardar: " + listaPersonas.size() + "\n");
+		System.out.println("Número de datos a guardar: " + coleccionPersonas.size() + "\n");
 
 		try {
 
 			String txtEscribir = "";
 
-			Iterator<Persona> it = listaPersonas.iterator();
+			Iterator<Persona> it = coleccionPersonas.iterator();
 
 			Persona persona;
 			while (it.hasNext()) {

@@ -1,7 +1,10 @@
 package colecciones;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.ThreadLocalRandom;
 
 import beans.Dni;
@@ -74,8 +77,18 @@ public class CrearColeccion {
 	}
 
 	public static List<Persona> listaPersonas(int cantidad) {
-
 		List<Persona> listaPersonas = new ArrayList<Persona>();
+		CrearColeccion.buildCollection(listaPersonas, cantidad);
+		return listaPersonas;
+	}
+
+	public static Set<Persona> setPersonas(int cantidad) {
+		Set<Persona> setPersonas = new TreeSet<Persona>();
+		CrearColeccion.buildCollection(setPersonas, cantidad);
+		return setPersonas;
+	}
+
+	private static void buildCollection(Collection<Persona> coleccionPersonas, int cantidad) {
 
 		Dni dni;
 		Persona persona;
@@ -93,10 +106,9 @@ public class CrearColeccion {
 			dni = new Dni(random);
 			persona = new Persona(nombre, apellido, dni);
 
-			listaPersonas.add(persona);
+			coleccionPersonas.add(persona);
 		}
 
-		return listaPersonas;
 	}
 
 }

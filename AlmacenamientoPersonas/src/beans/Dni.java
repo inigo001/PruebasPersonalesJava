@@ -19,14 +19,18 @@ public class Dni implements Comparable<Dni> {
 
 	/* METODOS */
 
+	public boolean isValid() {
+
+		int numeroDni = Integer.parseInt(this.numero);
+		char letraDni = Dni.calcularLetra(numeroDni);
+
+		return (letraDni == this.letra);
+	}
+
 	public static char calcularLetra(int numeroDni) {
-
 		int mod = numeroDni % 23;
-
 		LetrasDni valor = LetrasDni.values()[mod];
-
 		return valor.toString().charAt(0);
-
 	}
 
 	/* GET Y SET */
