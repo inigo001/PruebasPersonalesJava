@@ -1,5 +1,6 @@
 package colecciones.colecciones;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -10,8 +11,6 @@ import colecciones.conduccion.Persona;
 public class TestSortedSetPersonas {
 
 	public static void main(String[] args) {
-
-		Set<Persona> personas = new TreeSet<Persona>();
 
 		// -
 		Dni dni1 = new Dni("12345678", 'W');
@@ -48,6 +47,8 @@ public class TestSortedSetPersonas {
 		Persona persona11 = new Persona("Gerifonia", "Marín", dni11);
 
 		// -
+		Set<Persona> personas = new TreeSet<Persona>();
+
 		personas.add(persona1);
 		personas.add(persona2);
 		personas.add(persona3);
@@ -61,7 +62,25 @@ public class TestSortedSetPersonas {
 		personas.add(persona11);
 
 		// -
+		Comparator<Persona> compaPersonas = new ComparatorTest();
+		Set<Persona> personillas = new TreeSet<Persona>(compaPersonas);
+
+		personillas.add(persona1);
+		personillas.add(persona2);
+		personillas.add(persona3);
+		personillas.add(persona4);
+		personillas.add(persona5);
+		personillas.add(persona6);
+		personillas.add(persona7);
+		personillas.add(persona8);
+		personillas.add(persona9);
+		personillas.add(persona10);
+		personillas.add(persona11);
+
+		// -
 		TestSortedSetPersonas.leerPersonas(personas);
+		System.out.println("-- :_:_: --");
+		TestSortedSetPersonas.leerPersonas(personillas);
 
 	}
 
