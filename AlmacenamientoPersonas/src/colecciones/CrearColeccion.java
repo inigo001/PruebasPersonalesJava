@@ -82,8 +82,6 @@ public class CrearColeccion {
 		int random;
 		String nombre;
 		String apellido;
-		String numeroDni;
-
 		for (int i = 0; i < cantidad; i++) {
 
 			random = ThreadLocalRandom.current().nextInt(0, CrearColeccion.nombres.length);
@@ -91,9 +89,8 @@ public class CrearColeccion {
 			random = ThreadLocalRandom.current().nextInt(0, CrearColeccion.apellidos.length);
 			apellido = CrearColeccion.apellidos[random];
 			random = ThreadLocalRandom.current().nextInt(10000000, 100000000);
-			numeroDni = String.valueOf(random);
 
-			dni = new Dni(numeroDni, Dni.calcularLetra(random));
+			dni = new Dni(random);
 			persona = new Persona(nombre, apellido, dni);
 
 			listaPersonas.add(persona);

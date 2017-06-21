@@ -11,7 +11,10 @@ public class EjecutarGuardarDatos {
 
 	public static void main(String[] args) {
 
-		List<Persona> listaPersonas = CrearColeccion.listaPersonas(30);
+		System.out.println("EJECUNTANDO guardado de " + Configuracion.NUMERO_PERSONAS + " personas en \""
+				+ Configuracion.NOMBRE_FICHERO + "\"\n");
+
+		List<Persona> listaPersonas = CrearColeccion.listaPersonas(Configuracion.NUMERO_PERSONAS);
 
 		AlmacenamientoFicheros.guardarPersonas(Configuracion.NOMBRE_FICHERO, listaPersonas);
 	}

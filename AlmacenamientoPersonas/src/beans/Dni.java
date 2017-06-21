@@ -12,14 +12,19 @@ public class Dni implements Comparable<Dni> {
 		this.letra = letra;
 	}
 
+	public Dni(int numeroDni) {
+		this.numero = String.valueOf(numeroDni);
+		this.letra = Dni.calcularLetra(numeroDni);
+	}
+
 	/* METODOS */
 
 	public static char calcularLetra(int numeroDni) {
 
 		int mod = numeroDni % 23;
-		
+
 		LetrasDni valor = LetrasDni.values()[mod];
-		
+
 		return valor.toString().charAt(0);
 
 	}
