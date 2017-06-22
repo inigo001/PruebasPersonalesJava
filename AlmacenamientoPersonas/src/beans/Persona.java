@@ -1,5 +1,7 @@
 package beans;
 
+import java.text.Collator; // Usamos el Collator para que las comparaciones se hagan respetando las tíldes
+
 public class Persona implements Comparable<Persona> {
 
 	private String nombre;
@@ -85,10 +87,12 @@ public class Persona implements Comparable<Persona> {
 			return 0;
 		}
 
-		int num = this.apellido.compareTo(other.apellido);
+		Collator col = Collator.getInstance();
+
+		int num = col.compare(this.getApellido(), other.getApellido());
 
 		if (num == 0) {
-			num = this.nombre.compareTo(other.nombre);
+			num = col.compare(this.getNombre(), other.getNombre());
 			if (num == 0) {
 				num = this.dni.compareTo(other.dni);
 			}

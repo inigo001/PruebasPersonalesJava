@@ -12,13 +12,19 @@ public class EjecutarGuardarDatos {
 
 	public static void main(String[] args) {
 
-		System.out.println("EJECUNTANDO guardado de " + Configuracion.NUMERO_PERSONAS + " personas en \""
-				+ Configuracion.NOMBRE_FICHERO + "\"\n");
+		if (Configuracion.NUMERO_PERSONAS > 0) {
+			System.out.println("EJECUNTANDO guardado de " + Configuracion.NUMERO_PERSONAS + " personas en \""
+					+ Configuracion.NOMBRE_FICHERO + "\"\n");
 
-		Collection<Persona> listaPersonas = CrearColeccion.setOrdenadoPersonas(Configuracion.NUMERO_PERSONAS,
-				new ComparatorPersonaNombre());
+			Collection<Persona> listaPersonas = CrearColeccion.setOrdenadoPersonas(Configuracion.NUMERO_PERSONAS,
+					new ComparatorPersonaNombre());
 
-		AlmacenamientoFicheros.guardarPersonas(Configuracion.NOMBRE_FICHERO, listaPersonas);
+			AlmacenamientoFicheros.guardarPersonas(Configuracion.NOMBRE_FICHERO, listaPersonas);
+		} else {
+			System.out.println(
+					"¿Eres tan idiota como para querer crear una lista sin valores? Por favor, vuelve a intentarlo y ten un poco más de cabeza.");
+		}
+
 	}
 
 }

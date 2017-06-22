@@ -15,13 +15,19 @@ import beans.Persona;
 
 public class CrearColeccion {
 
+	/**
+	 * Listado de nombres para crear combinaciones
+	 */
 	private static String[] nombres = new String[] { "Pepe", "Domingo", "Alberta", "Gerifonia", "Estudinia",
 			"Adalberto", "Enriqueta", "Mikel", "Iñigo", "Juan", "Chindasbinto", "Recesbinto", "Teódulo", "Orestes",
 			"Hugo", "Juan", "Jesús", "Anacleto", "Perfinia", "Incontinencia", "Felicitación", "María", "Gerundina",
 			"Participia", "Onofre", "Pérfida", "Santa", "Herminia", "Erundino", "Romualda", "Rigoberta", "Eustaquia",
 			"Ponciana", "Sancho", "Zigor", "Telésforo", "Siseguto", "Segismunda", "Ruperta", "Astonfasia", "Antonia",
-			"Vicente", "Antonomasia", "Crédula", "Euro", "Ahmed", "Mahmud" };
+			"Vicente", "Antonomasia", "Crédula", "Euro", "Ahmed", "Mahmud", "Petra", "Telecándido" };
 
+	/**
+	 * Listado de apellidos para crear combinaciones
+	 */
 	private static String[] apellidos = new String[] { "Perez", "Dominguez", "Albertez", "Mínguez", "Marín", "Mondeled",
 			"Mónguez", "Bilbao", "Donostio", "López", "Yuste", "Pepez", "Adalez", "Chumbo", "Pedril", "Becerro",
 			"Astimburio", "Goiribeitialarri", "Zaldigoitia", "Scott", "Johns", "Idiotez", "Ruipérez", "Pepínez",
@@ -30,12 +36,24 @@ public class CrearColeccion {
 			"Aguirre", "Méndez", "Hoyos", "Ortega", "Tontín" };
 
 	//
+	/**
+	 * Crea una lista de 12 personas
+	 * 
+	 * @return
+	 */
 	public static List<Persona> listaPersonas() {
 		List<Persona> listaPersonas = new ArrayList<Persona>();
 		CrearColeccion.buildCollection(listaPersonas, 12);
 		return listaPersonas;
 	}
 
+	/**
+	 * Crea una lista de personas con la cantidad seleccionada. Por favor, que
+	 * sean números positivos.
+	 * 
+	 * @param cantidad
+	 * @return
+	 */
 	public static List<Persona> listaPersonas(int cantidad) {
 		List<Persona> listaPersonas = new ArrayList<Persona>();
 		CrearColeccion.buildCollection(listaPersonas, cantidad);

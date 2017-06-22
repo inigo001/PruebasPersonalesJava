@@ -1,5 +1,6 @@
 package colecciones;
 
+import java.text.Collator; // Usamos el Collator para que las comparaciones se hagan respetando las tíldes
 import java.util.Comparator;
 
 import beans.Persona;
@@ -13,12 +14,14 @@ public class ComparatorPersonaDni implements Comparator<Persona> {
 			return 0;
 		}
 
+		Collator col = Collator.getInstance();
+
 		int num = p1.getDni().compareTo(p2.getDni());
 
 		if (num == 0) {
-			num = p1.getApellido().compareTo(p2.getApellido());
+			num = col.compare(p1.getApellido(), p2.getApellido());
 			if (num == 0) {
-				num = p1.getNombre().compareTo(p2.getNombre());
+				num = col.compare(p1.getNombre(), p2.getNombre());
 			}
 		}
 
