@@ -5,6 +5,10 @@ public class Dni implements Comparable<Dni> {
 	private String numero;
 	private char letra;
 
+	private enum LetrasDni {
+		T, R, W, A, G, M, Y, F, P, D, X, B, N, J, Z, S, Q, V, H, L, C, K, E
+	}
+
 	/* CONSTRUCTORES */
 
 	public Dni(String numero, char letra) {
@@ -36,7 +40,7 @@ public class Dni implements Comparable<Dni> {
 	/* GET Y SET */
 
 	public String getNumero() {
-		return numero;
+		return this.numero;
 	}
 
 	public void setNumero(String numero) {
@@ -44,7 +48,7 @@ public class Dni implements Comparable<Dni> {
 	}
 
 	public char getLetra() {
-		return letra;
+		return this.letra;
 	}
 
 	public void setLetra(char letra) {
@@ -55,15 +59,15 @@ public class Dni implements Comparable<Dni> {
 
 	@Override
 	public String toString() {
-		return numero + "-" + letra;
+		return this.numero + "-" + this.letra;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + letra;
-		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
+		result = prime * result + this.letra;
+		result = prime * result + ((this.numero == null) ? 0 : this.numero.hashCode());
 		return result;
 	}
 
@@ -76,12 +80,12 @@ public class Dni implements Comparable<Dni> {
 		if (getClass() != obj.getClass())
 			return false;
 		Dni other = (Dni) obj;
-		if (letra != other.letra)
+		if (this.letra != other.letra)
 			return false;
-		if (numero == null) {
+		if (this.numero == null) {
 			if (other.numero != null)
 				return false;
-		} else if (!numero.equals(other.numero))
+		} else if (!this.numero.equals(other.numero))
 			return false;
 		return true;
 	}

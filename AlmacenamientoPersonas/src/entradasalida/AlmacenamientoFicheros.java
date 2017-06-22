@@ -57,6 +57,8 @@ public class AlmacenamientoFicheros {
 			Path path = Paths.get(nombreFichero);
 			List<String> listText = Files.readAllLines(path);
 
+			System.out.println("Leyendo número de datos: " + listText.size() + "\n");
+
 			Persona persona;
 			Dni dni;
 			String[] contenido;
