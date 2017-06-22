@@ -23,7 +23,8 @@ public class CrearColeccion {
 			"Hugo", "Juan", "Jesús", "Anacleto", "Perfinia", "Incontinencia", "Felicitación", "María", "Gerundina",
 			"Participia", "Onofre", "Pérfida", "Santa", "Herminia", "Erundino", "Romualda", "Rigoberta", "Eustaquia",
 			"Ponciana", "Sancho", "Zigor", "Telésforo", "Siseguto", "Segismunda", "Ruperta", "Astonfasia", "Antonia",
-			"Vicente", "Antonomasia", "Crédula", "Euro", "Ahmed", "Mahmud", "Petra", "Telecándido" };
+			"Vicente", "Antonomasia", "Crédula", "Euro", "Ahmed", "Mahmud", "Petra", "Telecándido", "Jesús Juan",
+			"Dubinia María", "Felipe Juán Froilán de Todos los Santos", "María Luz", "Melquiades" };
 
 	/**
 	 * Listado de apellidos para crear combinaciones
@@ -33,7 +34,7 @@ public class CrearColeccion {
 			"Astimburio", "Goiribeitialarri", "Zaldigoitia", "Scott", "Johns", "Idiotez", "Ruipérez", "Pepínez",
 			"Embriaguez", "Taribinio", "Ósculo", "Átropo", "Ramírez", "Altunabeitia", "Panez", "Alto", "Sanchez",
 			"Lobo", "Búho", "Perro", "Abeja", "Río", "Lupertino", "Giribín", "Chumbez", "Dambín", "Limpio", "Inglés",
-			"Aguirre", "Méndez", "Hoyos", "Ortega", "Tontín" };
+			"Aguirre", "Méndez", "Hoyos", "Ortega", "Tontín", "Peréz de Artuagabeitia", "Minguín de Vitoria" };
 
 	//
 	/**

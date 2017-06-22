@@ -29,7 +29,7 @@ public class AlmacenamientoFicheros {
 			Persona persona;
 			while (it.hasNext()) {
 				persona = it.next();
-				txtEscribir += persona.toString() + ((it.hasNext()) ? "\n" : "");
+				txtEscribir += persona.obtenerDatos() + ((it.hasNext()) ? "\n" : "");
 			}
 
 			System.out.println("String Creado");
@@ -65,7 +65,7 @@ public class AlmacenamientoFicheros {
 			String[] contenidoDni;
 			for (String texto : listText) {
 
-				contenido = texto.split("\\s");
+				contenido = texto.split(",");
 				if (contenido.length != 3)
 					throw new Exception("Error en el formato del fichero");
 

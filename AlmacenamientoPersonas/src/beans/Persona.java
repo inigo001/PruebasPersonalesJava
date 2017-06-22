@@ -80,6 +80,10 @@ public class Persona implements Comparable<Persona> {
 		return nombre + " " + apellido + " " + dni;
 	}
 
+	public String obtenerDatos() {
+		return nombre + "," + apellido + "," + dni;
+	}
+
 	@Override
 	public int compareTo(Persona other) {
 
