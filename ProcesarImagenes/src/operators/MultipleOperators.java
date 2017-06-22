@@ -22,8 +22,6 @@ public class MultipleOperators {
 			maxHeight = (maxHeight < image.getHeight()) ? image.getHeight() : maxHeight;
 		}
 		
-		System.out.println(maxWidth);
-
 		int[][] red = new int[maxWidth][maxHeight];
 		int[][] green = new int[maxWidth][maxHeight];
 		int[][] blue = new int[maxWidth][maxHeight];

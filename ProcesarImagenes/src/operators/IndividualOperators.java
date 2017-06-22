@@ -106,8 +106,6 @@ public class IndividualOperators {
 
 		double divisor = red + green + blue;
 
-		System.out.println(divisor);
-
 		for (int i = 0; i < image.getWidth(); i++) {
 			for (int j = 0; j < image.getHeight(); j++) {
 
