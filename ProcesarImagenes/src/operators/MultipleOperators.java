@@ -3,6 +3,8 @@ package operators;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 
+import tools.Tools;
+
 public class MultipleOperators {
 
 	private MultipleOperators() {
@@ -21,7 +23,7 @@ public class MultipleOperators {
 			maxWidth = (maxWidth < image.getWidth()) ? image.getWidth() : maxWidth;
 			maxHeight = (maxHeight < image.getHeight()) ? image.getHeight() : maxHeight;
 		}
-		
+
 		int[][] red = new int[maxWidth][maxHeight];
 		int[][] green = new int[maxWidth][maxHeight];
 		int[][] blue = new int[maxWidth][maxHeight];
@@ -51,6 +53,55 @@ public class MultipleOperators {
 
 				newImage.setRGB(i, j, pixelColor.getRGB());
 			}
+		}
+
+		return newImage;
+
+	}
+
+	public static BufferedImage spriteCreator(BufferedImage... images) {
+
+		double blockSize = Math.sqrt(images.length);
+		
+		if (blockSize - (int)blockSize != 0){
+			blockSize++;
+		}
+
+		int xImages = (int)blockSize;
+		int yImages = (int)blockSize;
+
+		int imageWidth = images[0].getWidth() * xImages;
+		int imageHeight = images[0].getHeight() * yImages;
+
+		BufferedImage newImage = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_ARGB);
+		Tools.clearBufferedImage(newImage);
+
+		int x = 0;
+		int y = 0;
+		int counter = 0;
+
+		BufferedImage image;
+
+		while (counter < images.length) {
+
+			while (y < yImages && counter < images.length) {
+
+				image = images[counter];
+
+				for (int i = 0; i < image.getWidth(); i++) {
+					for (int j = 0; j < image.getHeight(); j++) {
+
+						newImage.setRGB(i + (image.getWidth() * x), j + (image.getHeight() * y), image.getRGB(i, j));
+					}
+				}
+
+				counter++;
+				y++;
+			}
+
+			y = 0;
+			x++;
+
 		}
 
 		return newImage;
